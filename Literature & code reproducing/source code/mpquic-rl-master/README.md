@@ -15,10 +15,9 @@ _Steps_:
 
   1. Grab the original MP-QUIC VM image from https://multipath-quic.org/2017/12/09/artifacts-available.html 
       
-      i. Start up the VM  with KEMU
+      i. Start up the VM  with KEMU 
 
-      ii. SSH Into the VM (user: mininet, pass: mininet)
-
+z
       iii. Place your ssh public keys under ~/.ssh/authorized_keys (from link above this is step 3 from end)
 
   2. Copy the contents of 'minitopo/' under VM's '~/git/minitopo/src/'
