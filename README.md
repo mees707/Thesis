@@ -2,6 +2,7 @@
 
 
 Useful links:
+ttps://multipath-quic.org/2017/12/09/artifacts-available.html 
 
 https://github.com/pijuskri/MPQUIC-meta-learning/tree/main
 previous person that worked on this project
@@ -31,6 +32,7 @@ sudo qemu-system-x86_64 -m 2048 kvm-mpquic.vmdk -net nic,model=virtio -net user,
 
 
 **DO NOT USE RSA AS SSH KEY, DEPRICATED**
+**MAKE SURE TO FOLLOW THESE STEPS, NOT THE ONES FROM MININET.ORG**
 setting up ssh key if this is not done before:
 
 generating the key (host):
