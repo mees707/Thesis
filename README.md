@@ -57,3 +57,40 @@ again, should not be a password promt anymore
 
 
 
+
+
+NOT YET CLEAR ABOUT THESE STEPS:
+# Create if it does not exists yet
+The second one is to mount the file measurement location on the RAM. This should limit the impact of the hard disk on the results.
+$ sudo mkdir /mnt/tmpfs
+# This should be run each time the VM is restarted
+$ sudo mount -t tmpfs -o size=256M tmpfs /mnt/tmpfs
+steps dont work so far
+
+
+going to keep the date on here so i know where i am
+2 may:
+trying to get the dash framework to work, should not be too hard except for installing some packages
+dash framework VM download does not work, will probably email the original creator asking if he still has it somewhere
+
+build the "MPQUIC-SBD: Multipath QUIC (MPQUIC) with support of Shared Bottleneck Detection (SBD)" framework, dont know how it is usefull yet tho...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
