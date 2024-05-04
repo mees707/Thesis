@@ -1,0 +1,11 @@
+,Trace1,Trace2
+0,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_167.csv,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_174.csv
+1,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_165.csv,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_168.csv
+2,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_169.csv,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_171.csv
+3,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_167.csv,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_168.csv
+4,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_167.csv,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_169.csv
+5,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/static_182.csv,wifi
+6,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_168.csv,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_174.csv
+7,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_165.csv,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_169.csv
+8,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_165.csv,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/car_171.csv
+9,/home/mininet/Workspace/mpquic-sbd/network/mininet/processed/static_180.csv,wifi

@@ -1,0 +1,28 @@
+{
+    "A_DIM": 8,
+    "CHANGE_PROB": 50.0,
+    "COOLDOWN_TIME": 60,
+    "EPISODES_TO_RUN": 10,
+    "EPS_TEST": 0.05,
+    "EPS_TRAIN": 0.15,
+    "GAMMA": 0.99,
+    "LSTM_HIDDEN": 32,
+    "LSTM_TRAINED_MODEL": "runs/20230528_19_23_06_LSTM_train/9_model.tar",
+    "MODE": "train",
+    "REMOTE_HOST": "mininet@localhost",
+    "REMOTE_PORT": "2222",
+    "REMOTE_SERVER_RUNNER_HOSTNAME": [
+        "mininet@localhost"
+    ],
+    "REMOTE_SERVER_RUNNER_PORT": [
+        "2222"
+    ],
+    "SEGMENT_LIMIT": 301,
+    "SEGMENT_UPDATES_FOR_LOSS": 5,
+    "S_INFO": 6,
+    "TRAINING": true,
+    "apply_loss_steps": 25,
+    "hidden_size": 256,
+    "learning_rate": 0.001,
+    "model_name": "LSTM"
+}

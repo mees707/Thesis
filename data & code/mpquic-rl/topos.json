@@ -1,0 +1,2602 @@
+[
+    {
+        "paths": [
+            {
+                "bandwidth": "55",
+                "delay": "16.0",
+                "queuingDelay": "0.031"
+            },
+            {
+                "bandwidth": "61",
+                "delay": "18.5",
+                "queuingDelay": "0.058"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.41%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.22%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "40",
+                "delay": "10.5",
+                "queuingDelay": "0.014"
+            },
+            {
+                "bandwidth": "23",
+                "delay": "20.5",
+                "queuingDelay": "0.008"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.13%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.98%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "30",
+                "delay": "8.5",
+                "queuingDelay": "0.045"
+            },
+            {
+                "bandwidth": "67",
+                "delay": "19.5",
+                "queuingDelay": "0.004"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.54%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.57%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "72",
+                "delay": "7.5",
+                "queuingDelay": "0.052"
+            },
+            {
+                "bandwidth": "97",
+                "delay": "0.5",
+                "queuingDelay": "0.024"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.36%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.49%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "46",
+                "delay": "25.0",
+                "queuingDelay": "0.005"
+            },
+            {
+                "bandwidth": "9",
+                "delay": "7.0",
+                "queuingDelay": "0.078"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.00%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.39%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "27",
+                "delay": "6.0",
+                "queuingDelay": "0.053"
+            },
+            {
+                "bandwidth": "12",
+                "delay": "15.5",
+                "queuingDelay": "0.084"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.81%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.20%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "74",
+                "delay": "8.0",
+                "queuingDelay": "0.076"
+            },
+            {
+                "bandwidth": "30",
+                "delay": "22.0",
+                "queuingDelay": "0.034"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.53%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.60%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "36",
+                "delay": "23.0",
+                "queuingDelay": "0.006"
+            },
+            {
+                "bandwidth": "35",
+                "delay": "5.5",
+                "queuingDelay": "0.072"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.15%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.50%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "53",
+                "delay": "6.5",
+                "queuingDelay": "0.037"
+            },
+            {
+                "bandwidth": "28",
+                "delay": "16.0",
+                "queuingDelay": "0.033"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.07%"
+            ],
+            [
+                1,
+                0,
+                "loss 2.33%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "13",
+                "delay": "18.5",
+                "queuingDelay": "0.008"
+            },
+            {
+                "bandwidth": "71",
+                "delay": "12.5",
+                "queuingDelay": "0.083"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.76%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.56%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "95",
+                "delay": "10.5",
+                "queuingDelay": "0.056"
+            },
+            {
+                "bandwidth": "78",
+                "delay": "9.0",
+                "queuingDelay": "0.094"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.85%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.01%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "89",
+                "delay": "17.5",
+                "queuingDelay": "0.048"
+            },
+            {
+                "bandwidth": "62",
+                "delay": "22.0",
+                "queuingDelay": "0.040"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.27%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.29%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "35",
+                "delay": "6.5",
+                "queuingDelay": "0.082"
+            },
+            {
+                "bandwidth": "20",
+                "delay": "11.0",
+                "queuingDelay": "0.053"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.60%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.82%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "35",
+                "delay": "3.0",
+                "queuingDelay": "0.029"
+            },
+            {
+                "bandwidth": "14",
+                "delay": "20.5",
+                "queuingDelay": "0.043"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.51%"
+            ],
+            [
+                1,
+                0,
+                "loss 2.13%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "68",
+                "delay": "9.0",
+                "queuingDelay": "0.054"
+            },
+            {
+                "bandwidth": "92",
+                "delay": "9.0",
+                "queuingDelay": "0.049"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.48%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.19%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "8",
+                "delay": "9.0",
+                "queuingDelay": "0.063"
+            },
+            {
+                "bandwidth": "96",
+                "delay": "22.0",
+                "queuingDelay": "0.097"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.35%"
+            ],
+            [
+                1,
+                0,
+                "loss 2.50%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "26",
+                "delay": "5.0",
+                "queuingDelay": "0.015"
+            },
+            {
+                "bandwidth": "53",
+                "delay": "22.0",
+                "queuingDelay": "0.074"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.05%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.07%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "99",
+                "delay": "19.0",
+                "queuingDelay": "0.022"
+            },
+            {
+                "bandwidth": "46",
+                "delay": "7.5",
+                "queuingDelay": "0.013"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.37%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.78%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "97",
+                "delay": "3.0",
+                "queuingDelay": "0.063"
+            },
+            {
+                "bandwidth": "17",
+                "delay": "8.5",
+                "queuingDelay": "0.034"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.63%"
+            ],
+            [
+                1,
+                0,
+                "loss 2.20%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "5",
+                "delay": "3.5",
+                "queuingDelay": "0.015"
+            },
+            {
+                "bandwidth": "49",
+                "delay": "7.0",
+                "queuingDelay": "0.098"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.11%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.53%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "31",
+                "delay": "20.0",
+                "queuingDelay": "0.015"
+            },
+            {
+                "bandwidth": "68",
+                "delay": "21.5",
+                "queuingDelay": "0.001"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.37%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.08%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "44",
+                "delay": "20.5",
+                "queuingDelay": "0.019"
+            },
+            {
+                "bandwidth": "45",
+                "delay": "11.0",
+                "queuingDelay": "0.016"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.49%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.86%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "25",
+                "delay": "10.0",
+                "queuingDelay": "0.090"
+            },
+            {
+                "bandwidth": "40",
+                "delay": "8.0",
+                "queuingDelay": "0.008"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.56%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.50%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "15",
+                "delay": "14.0",
+                "queuingDelay": "0.075"
+            },
+            {
+                "bandwidth": "76",
+                "delay": "23.0",
+                "queuingDelay": "0.075"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.49%"
+            ],
+            [
+                1,
+                0,
+                "loss 2.42%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "13",
+                "delay": "12.0",
+                "queuingDelay": "0.004"
+            },
+            {
+                "bandwidth": "76",
+                "delay": "15.5",
+                "queuingDelay": "0.031"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.35%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.45%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "59",
+                "delay": "14.5",
+                "queuingDelay": "0.046"
+            },
+            {
+                "bandwidth": "50",
+                "delay": "9.5",
+                "queuingDelay": "0.062"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.42%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.62%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "96",
+                "delay": "3.5",
+                "queuingDelay": "0.024"
+            },
+            {
+                "bandwidth": "27",
+                "delay": "23.0",
+                "queuingDelay": "0.015"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.96%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.97%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "61",
+                "delay": "8.5",
+                "queuingDelay": "0.048"
+            },
+            {
+                "bandwidth": "69",
+                "delay": "24.5",
+                "queuingDelay": "0.100"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.11%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.54%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "96",
+                "delay": "2.5",
+                "queuingDelay": "0.088"
+            },
+            {
+                "bandwidth": "26",
+                "delay": "14.0",
+                "queuingDelay": "0.052"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.12%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.35%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "93",
+                "delay": "6.5",
+                "queuingDelay": "0.092"
+            },
+            {
+                "bandwidth": "73",
+                "delay": "11.5",
+                "queuingDelay": "0.009"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.31%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.95%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "42",
+                "delay": "25.0",
+                "queuingDelay": "0.084"
+            },
+            {
+                "bandwidth": "86",
+                "delay": "17.5",
+                "queuingDelay": "0.092"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.99%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.87%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "46",
+                "delay": "23.0",
+                "queuingDelay": "0.038"
+            },
+            {
+                "bandwidth": "70",
+                "delay": "13.5",
+                "queuingDelay": "0.050"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.59%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.06%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "96",
+                "delay": "17.5",
+                "queuingDelay": "0.094"
+            },
+            {
+                "bandwidth": "88",
+                "delay": "16.5",
+                "queuingDelay": "0.092"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.92%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.61%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "16",
+                "delay": "0.5",
+                "queuingDelay": "0.083"
+            },
+            {
+                "bandwidth": "77",
+                "delay": "5.0",
+                "queuingDelay": "0.064"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.97%"
+            ],
+            [
+                1,
+                0,
+                "loss 2.39%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "99",
+                "delay": "18.0",
+                "queuingDelay": "0.092"
+            },
+            {
+                "bandwidth": "18",
+                "delay": "9.5",
+                "queuingDelay": "0.017"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.27%"
+            ],
+            [
+                1,
+                0,
+                "loss 2.32%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "3",
+                "delay": "24.0",
+                "queuingDelay": "0.088"
+            },
+            {
+                "bandwidth": "54",
+                "delay": "8.5",
+                "queuingDelay": "0.063"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.74%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.33%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "98",
+                "delay": "4.0",
+                "queuingDelay": "0.028"
+            },
+            {
+                "bandwidth": "88",
+                "delay": "4.5",
+                "queuingDelay": "0.018"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.20%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.89%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "34",
+                "delay": "14.0",
+                "queuingDelay": "0.095"
+            },
+            {
+                "bandwidth": "81",
+                "delay": "7.0",
+                "queuingDelay": "0.074"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.64%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.29%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "9",
+                "delay": "17.0",
+                "queuingDelay": "0.082"
+            },
+            {
+                "bandwidth": "65",
+                "delay": "6.0",
+                "queuingDelay": "0.084"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.59%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.51%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "82",
+                "delay": "18.5",
+                "queuingDelay": "0.013"
+            },
+            {
+                "bandwidth": "21",
+                "delay": "17.0",
+                "queuingDelay": "0.055"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.58%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.76%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "54",
+                "delay": "11.0",
+                "queuingDelay": "0.066"
+            },
+            {
+                "bandwidth": "33",
+                "delay": "6.0",
+                "queuingDelay": "0.055"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.69%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.32%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "16",
+                "delay": "11.5",
+                "queuingDelay": "0.026"
+            },
+            {
+                "bandwidth": "92",
+                "delay": "21.5",
+                "queuingDelay": "0.003"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.75%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.48%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "91",
+                "delay": "22.0",
+                "queuingDelay": "0.049"
+            },
+            {
+                "bandwidth": "84",
+                "delay": "9.0",
+                "queuingDelay": "0.027"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.25%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.00%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "64",
+                "delay": "7.0",
+                "queuingDelay": "0.088"
+            },
+            {
+                "bandwidth": "83",
+                "delay": "17.5",
+                "queuingDelay": "0.062"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.22%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.42%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "47",
+                "delay": "11.5",
+                "queuingDelay": "0.084"
+            },
+            {
+                "bandwidth": "54",
+                "delay": "2.5",
+                "queuingDelay": "0.039"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.40%"
+            ],
+            [
+                1,
+                0,
+                "loss 2.00%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "63",
+                "delay": "23.5",
+                "queuingDelay": "0.071"
+            },
+            {
+                "bandwidth": "23",
+                "delay": "15.5",
+                "queuingDelay": "0.034"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.70%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.64%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "25",
+                "delay": "12.0",
+                "queuingDelay": "0.079"
+            },
+            {
+                "bandwidth": "53",
+                "delay": "2.5",
+                "queuingDelay": "0.079"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.63%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.81%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "3",
+                "delay": "14.5",
+                "queuingDelay": "0.065"
+            },
+            {
+                "bandwidth": "56",
+                "delay": "5.5",
+                "queuingDelay": "0.078"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.05%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.02%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "81",
+                "delay": "7.0",
+                "queuingDelay": "0.083"
+            },
+            {
+                "bandwidth": "25",
+                "delay": "21.0",
+                "queuingDelay": "0.023"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.56%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.05%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "15",
+                "delay": "19.5",
+                "queuingDelay": "0.065"
+            },
+            {
+                "bandwidth": "41",
+                "delay": "25.0",
+                "queuingDelay": "0.011"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.86%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.63%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "41",
+                "delay": "17.0",
+                "queuingDelay": "0.064"
+            },
+            {
+                "bandwidth": "90",
+                "delay": "12.5",
+                "queuingDelay": "0.040"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.86%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.12%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "37",
+                "delay": "7.0",
+                "queuingDelay": "0.042"
+            },
+            {
+                "bandwidth": "8",
+                "delay": "0.0",
+                "queuingDelay": "0.088"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.42%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.14%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "91",
+                "delay": "5.5",
+                "queuingDelay": "0.063"
+            },
+            {
+                "bandwidth": "27",
+                "delay": "11.0",
+                "queuingDelay": "0.008"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.14%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.40%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "12",
+                "delay": "18.0",
+                "queuingDelay": "0.002"
+            },
+            {
+                "bandwidth": "73",
+                "delay": "21.0",
+                "queuingDelay": "0.008"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.85%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.08%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "86",
+                "delay": "4.5",
+                "queuingDelay": "0.082"
+            },
+            {
+                "bandwidth": "2",
+                "delay": "10.5",
+                "queuingDelay": "0.047"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.15%"
+            ],
+            [
+                1,
+                0,
+                "loss 2.49%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "38",
+                "delay": "24.0",
+                "queuingDelay": "0.039"
+            },
+            {
+                "bandwidth": "63",
+                "delay": "21.5",
+                "queuingDelay": "0.052"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.33%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.95%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "81",
+                "delay": "24.5",
+                "queuingDelay": "0.037"
+            },
+            {
+                "bandwidth": "6",
+                "delay": "0.5",
+                "queuingDelay": "0.006"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.66%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.12%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "6",
+                "delay": "0.0",
+                "queuingDelay": "0.043"
+            },
+            {
+                "bandwidth": "30",
+                "delay": "14.5",
+                "queuingDelay": "0.050"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.43%"
+            ],
+            [
+                1,
+                0,
+                "loss 2.21%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "4",
+                "delay": "5.0",
+                "queuingDelay": "0.090"
+            },
+            {
+                "bandwidth": "71",
+                "delay": "10.5",
+                "queuingDelay": "0.073"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.79%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.87%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "40",
+                "delay": "8.0",
+                "queuingDelay": "0.026"
+            },
+            {
+                "bandwidth": "75",
+                "delay": "3.0",
+                "queuingDelay": "0.026"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.80%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.62%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "48",
+                "delay": "2.0",
+                "queuingDelay": "0.073"
+            },
+            {
+                "bandwidth": "94",
+                "delay": "22.0",
+                "queuingDelay": "0.071"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.25%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.09%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "84",
+                "delay": "6.0",
+                "queuingDelay": "0.070"
+            },
+            {
+                "bandwidth": "97",
+                "delay": "19.0",
+                "queuingDelay": "0.005"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.28%"
+            ],
+            [
+                1,
+                0,
+                "loss 2.05%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "87",
+                "delay": "1.5",
+                "queuingDelay": "0.066"
+            },
+            {
+                "bandwidth": "23",
+                "delay": "24.0",
+                "queuingDelay": "0.083"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.85%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.38%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "40",
+                "delay": "19.5",
+                "queuingDelay": "0.045"
+            },
+            {
+                "bandwidth": "56",
+                "delay": "3.5",
+                "queuingDelay": "0.026"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.10%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.77%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "30",
+                "delay": "3.5",
+                "queuingDelay": "0.058"
+            },
+            {
+                "bandwidth": "55",
+                "delay": "22.0",
+                "queuingDelay": "0.026"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.23%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.45%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "57",
+                "delay": "18.5",
+                "queuingDelay": "0.051"
+            },
+            {
+                "bandwidth": "48",
+                "delay": "2.5",
+                "queuingDelay": "0.022"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.33%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.83%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "46",
+                "delay": "2.0",
+                "queuingDelay": "0.021"
+            },
+            {
+                "bandwidth": "90",
+                "delay": "3.5",
+                "queuingDelay": "0.072"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.24%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.61%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "35",
+                "delay": "5.0",
+                "queuingDelay": "0.082"
+            },
+            {
+                "bandwidth": "3",
+                "delay": "19.5",
+                "queuingDelay": "0.018"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.40%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.16%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "66",
+                "delay": "5.5",
+                "queuingDelay": "0.049"
+            },
+            {
+                "bandwidth": "47",
+                "delay": "19.5",
+                "queuingDelay": "0.057"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.66%"
+            ],
+            [
+                1,
+                0,
+                "loss 2.36%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "70",
+                "delay": "2.5",
+                "queuingDelay": "0.069"
+            },
+            {
+                "bandwidth": "65",
+                "delay": "1.0",
+                "queuingDelay": "0.028"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.29%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.24%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "92",
+                "delay": "3.0",
+                "queuingDelay": "0.097"
+            },
+            {
+                "bandwidth": "90",
+                "delay": "18.5",
+                "queuingDelay": "0.026"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.71%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.33%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "44",
+                "delay": "14.0",
+                "queuingDelay": "0.016"
+            },
+            {
+                "bandwidth": "94",
+                "delay": "1.5",
+                "queuingDelay": "0.067"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.49%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.82%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "19",
+                "delay": "7.5",
+                "queuingDelay": "0.028"
+            },
+            {
+                "bandwidth": "83",
+                "delay": "23.0",
+                "queuingDelay": "0.084"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.29%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.81%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "25",
+                "delay": "3.0",
+                "queuingDelay": "0.080"
+            },
+            {
+                "bandwidth": "57",
+                "delay": "20.0",
+                "queuingDelay": "0.012"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.32%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.11%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "94",
+                "delay": "24.5",
+                "queuingDelay": "0.059"
+            },
+            {
+                "bandwidth": "42",
+                "delay": "19.0",
+                "queuingDelay": "0.088"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.04%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.16%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "82",
+                "delay": "17.5",
+                "queuingDelay": "0.091"
+            },
+            {
+                "bandwidth": "88",
+                "delay": "17.5",
+                "queuingDelay": "0.059"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.64%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.56%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "22",
+                "delay": "2.5",
+                "queuingDelay": "0.024"
+            },
+            {
+                "bandwidth": "74",
+                "delay": "6.0",
+                "queuingDelay": "0.047"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.88%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.54%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "40",
+                "delay": "13.5",
+                "queuingDelay": "0.039"
+            },
+            {
+                "bandwidth": "58",
+                "delay": "16.0",
+                "queuingDelay": "0.085"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.03%"
+            ],
+            [
+                1,
+                0,
+                "loss 2.05%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "69",
+                "delay": "12.0",
+                "queuingDelay": "0.091"
+            },
+            {
+                "bandwidth": "22",
+                "delay": "14.0",
+                "queuingDelay": "0.020"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.67%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.02%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "85",
+                "delay": "9.0",
+                "queuingDelay": "0.092"
+            },
+            {
+                "bandwidth": "58",
+                "delay": "10.0",
+                "queuingDelay": "0.020"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.35%"
+            ],
+            [
+                1,
+                0,
+                "loss 2.46%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "17",
+                "delay": "4.0",
+                "queuingDelay": "0.039"
+            },
+            {
+                "bandwidth": "63",
+                "delay": "14.5",
+                "queuingDelay": "0.054"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.97%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.71%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "31",
+                "delay": "6.5",
+                "queuingDelay": "0.030"
+            },
+            {
+                "bandwidth": "85",
+                "delay": "10.5",
+                "queuingDelay": "0.026"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.10%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.70%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "57",
+                "delay": "6.0",
+                "queuingDelay": "0.092"
+            },
+            {
+                "bandwidth": "71",
+                "delay": "2.0",
+                "queuingDelay": "0.047"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.06%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.93%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "91",
+                "delay": "4.0",
+                "queuingDelay": "0.044"
+            },
+            {
+                "bandwidth": "57",
+                "delay": "6.5",
+                "queuingDelay": "0.062"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.15%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.50%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "37",
+                "delay": "22.0",
+                "queuingDelay": "0.097"
+            },
+            {
+                "bandwidth": "2",
+                "delay": "8.5",
+                "queuingDelay": "0.068"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.97%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.49%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "78",
+                "delay": "10.5",
+                "queuingDelay": "0.025"
+            },
+            {
+                "bandwidth": "8",
+                "delay": "21.0",
+                "queuingDelay": "0.032"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.24%"
+            ],
+            [
+                1,
+                0,
+                "loss 2.44%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "28",
+                "delay": "5.0",
+                "queuingDelay": "0.045"
+            },
+            {
+                "bandwidth": "99",
+                "delay": "7.0",
+                "queuingDelay": "0.045"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.88%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.51%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "88",
+                "delay": "17.0",
+                "queuingDelay": "0.096"
+            },
+            {
+                "bandwidth": "23",
+                "delay": "6.0",
+                "queuingDelay": "0.090"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.64%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.86%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "20",
+                "delay": "14.0",
+                "queuingDelay": "0.021"
+            },
+            {
+                "bandwidth": "17",
+                "delay": "0.0",
+                "queuingDelay": "0.044"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.04%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.53%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "45",
+                "delay": "10.5",
+                "queuingDelay": "0.051"
+            },
+            {
+                "bandwidth": "13",
+                "delay": "23.0",
+                "queuingDelay": "0.017"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.58%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.93%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "8",
+                "delay": "7.5",
+                "queuingDelay": "0.079"
+            },
+            {
+                "bandwidth": "11",
+                "delay": "21.5",
+                "queuingDelay": "0.001"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.60%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.31%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "29",
+                "delay": "2.0",
+                "queuingDelay": "0.032"
+            },
+            {
+                "bandwidth": "64",
+                "delay": "18.0",
+                "queuingDelay": "0.059"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.25%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.88%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "46",
+                "delay": "12.0",
+                "queuingDelay": "0.100"
+            },
+            {
+                "bandwidth": "60",
+                "delay": "2.5",
+                "queuingDelay": "0.058"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.62%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.62%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "30",
+                "delay": "22.5",
+                "queuingDelay": "0.004"
+            },
+            {
+                "bandwidth": "88",
+                "delay": "18.0",
+                "queuingDelay": "0.057"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.41%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.32%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "12",
+                "delay": "13.0",
+                "queuingDelay": "0.046"
+            },
+            {
+                "bandwidth": "63",
+                "delay": "10.5",
+                "queuingDelay": "0.095"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 2.33%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.49%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "78",
+                "delay": "16.0",
+                "queuingDelay": "0.060"
+            },
+            {
+                "bandwidth": "80",
+                "delay": "8.5",
+                "queuingDelay": "0.028"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.33%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.41%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "19",
+                "delay": "23.5",
+                "queuingDelay": "0.075"
+            },
+            {
+                "bandwidth": "55",
+                "delay": "0.0",
+                "queuingDelay": "0.061"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.02%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.11%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "47",
+                "delay": "13.0",
+                "queuingDelay": "0.028"
+            },
+            {
+                "bandwidth": "22",
+                "delay": "0.5",
+                "queuingDelay": "0.029"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.93%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.14%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "55",
+                "delay": "20.0",
+                "queuingDelay": "0.002"
+            },
+            {
+                "bandwidth": "49",
+                "delay": "8.0",
+                "queuingDelay": "0.056"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 0.70%"
+            ],
+            [
+                1,
+                0,
+                "loss 1.51%"
+            ]
+        ]
+    },
+    {
+        "paths": [
+            {
+                "bandwidth": "70",
+                "delay": "5.0",
+                "queuingDelay": "0.079"
+            },
+            {
+                "bandwidth": "67",
+                "delay": "23.0",
+                "queuingDelay": "0.059"
+            }
+        ],
+        "netem": [
+            [
+                0,
+                0,
+                "loss 1.84%"
+            ],
+            [
+                1,
+                0,
+                "loss 0.32%"
+            ]
+        ]
+    }
+]
