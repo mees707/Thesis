@@ -28,7 +28,7 @@ how to launch vm:
 open terminal in folder location that the disc is located
 
 run:
-sudo qemu-system-x86_64 -m 2048 kvm-mpquic.vmdk -net nic,model=virtio -net user,net=192.168.101.0/24,hostfwd=tcp::8022-:22
+sudo qemu-system-x86_64 -m 2048 kvm-mpquic.vmdk -net nic,model=virtio -net user,net=192.168.101.0/24,hostfwd=tcp::2222-:22
 
 
 **DO NOT USE RSA AS SSH KEY, DEPRICATED**
@@ -39,10 +39,10 @@ generating the key (host):
 ssh-keygen -t ed25519
 
 moving the key from host to vm (the vm should be running, executed on host):
-scp -P 8022 ~/.ssh/id_ed25519.pub mininet@localhost:/tmp
+scp -P 2222 ~/.ssh/id_ed25519.pub mininet@localhost:/tmp
 
 ssh into vm(host):
-ssh -p 8022 mininet@localhost
+ssh -p 2222 mininet@localhost
 
 
 move file inside of vm to correct place(vm)
@@ -52,7 +52,7 @@ mkdir -p ~/.ssh
 and try again
 
 after this is done, log off and try (host)
-ssh -p 8022 mininet@localhost
+ssh -p 2222 mininet@localhost
 again, should not be a password promt anymore
 
 
@@ -66,6 +66,11 @@ $ sudo mkdir /mnt/tmpfs
 # This should be run each time the VM is restarted
 $ sudo mount -t tmpfs -o size=256M tmpfs /mnt/tmpfs
 steps dont work so far
+
+
+
+running the model: dont forget to conda activate mpquicrl
+
 
 
 going to keep the date on here so i know where i am
