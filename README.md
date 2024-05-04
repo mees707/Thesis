@@ -69,6 +69,7 @@ steps dont work so far
 
 
 going to keep the date on here so i know where i am
+
 2 may:
 trying to get the dash framework to work, should not be too hard except for installing some packages
 dash framework VM download does not work, will probably email the original creator asking if he still has it somewhere
@@ -76,6 +77,20 @@ dash framework VM download does not work, will probably email the original creat
 build the "MPQUIC-SBD: Multipath QUIC (MPQUIC) with support of Shared Bottleneck Detection (SBD)" framework, dont know how it is usefull yet tho...
 
 
+3 may:
+have set up a conda env called mpquicrl to get all the correct package versions and pyhthon version that is needed by mpquic-rl, the requirements.txt is kind off a mess and it took quite a while to get all packages working.
+including a yml file after i get things working should make this easier to work on
+need to figure out now what to run and how to run the model, since there is no explanation as to what does what anywhere. need to create a proper README with instructions as to how to run these things, since right now this is costing a lot of time to figure out.
+some changed made to MPQUIC-meta-learning
+
+inside Code/main/mpquic-rl/central_service/centraltrainer/basic_thread.py, there is a utils.logger import config_logger, this does not seem to work, changed it to python_utils.logger import Logged. should function the same.
+not sure about this fix, need to look into this if i run into issues: https://sherpa.readthedocs.io/en/latest/overview/utilities.html and https://stackoverflow.com/questions/61742333/can-not-import-logger-from-utils-error
+
+main.py is moved from Code/main/mpquic-rl/central_service/main.py to Code/main/mpquic-rl/main.py, since the imports inside this file seem to be directed as if main is located there.
+
+the requirement file has a package called avalanche-rl, this package needs to be downloaded via pip install git+https://github.com/ContinualAI/avalanche-rl.git, NOT what is currently in the requirement.txt
+
+there is a runs.zip file located in Code/main/mpquic-rl/central_service/, this file needs to be extracted at Code/main/mpquic-rl/runs
 
 
 
