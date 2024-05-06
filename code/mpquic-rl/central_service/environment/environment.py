@@ -33,8 +33,8 @@ class Session:
         for our environment!
         It is utilized by both agent and environment
     '''
-    # changed topologies='./environment/topos.json, dgraphs='environment/train_graphs.json'' to topologies='topos.json, dgraphs='train_graphs.json'
-    def __init__(self, topologies='./environment/topos.json', dgraphs='environment/train_graphs.json'):
+    # changed topologies='./environment/topos.json', dgraphs='environment/train_graphs.json' to topologies='central_service/environment/topos.json', dgraphs='central_service/environment/train_graphs.json'
+    def __init__(self, topologies='central_service/environment/topos.json', dgraphs='central_service/environment/train_graphs.json'):
         self._index = 0
 
         self._topologies, self._len_topo = self.loadTopologies(topologies)

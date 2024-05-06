@@ -105,7 +105,11 @@ fixed runs.zip location, extracted to proper file
 
 the fix for the config_logger did not work. this is not a package but another file, now seems to be resolved (changed "from utils.logger import config_logger" to "from central_service.utils.logger import config_logger")
 
+6 may:
+fixed all previous issues (for now), and placed the middleware folder inside of the VM in attempt to fix the following issue:
 
+FileNotFoundError: [Errno 2] No such file or directory: 'ssh -p 2222 mininet@localhost "stdbuf -oL killall ~/go/bin/middleware"': 'ssh -p 2222 mininet@localhost "stdbuf -oL killall ~/go/bin/middleware"'
+i dont understand where this error is coming from, it should not be looking for  a file but run this command.
 
 
 
