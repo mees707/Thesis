@@ -7,10 +7,10 @@ import json
 
 sys.path.append("")
 
-#changed from:
-#from utils.logger import config_logger
+#copied from request_handler (added central_service infront of original import)
+from central_service.utils.logger import config_logger
 #to:
-from python_utils.logger import Logged
+# from python_utils.logger import Logged
 # from logger import config_logger
 
 class BasicThread(threading.Thread):
@@ -27,7 +27,7 @@ class BasicThread(threading.Thread):
         self._queue = queue
         self._stoprequest = threading.Event()
 
-        self.__logger = Logged(name=self._threadName, filepath='./logs/{}.log'.format(self._threadName))
+        self.__logger = config_logger(name=self._threadName, filepath='./logs/{}.log'.format(self._threadName))
 
     def run(self):
         self.run()

@@ -15,17 +15,21 @@ from torch import optim
 import time
 import pandas as pd
 from tqdm import tqdm
+import os
 
-from central_service.pytorch_models.metaModel import ActorCritic
-from central_service.utils.data_transf import getTrainingVariables
-from central_service.utils.logger import config_logger
+current_path = os.getcwd()
+print("Current path:", current_path)
+#removed central_service. from all imports
+from pytorch_models.metaModel import ActorCritic
+from utils.data_transf import getTrainingVariables
+from utils.logger import config_logger
 from customGym.envs.NetworkEnv import NetworkEnv
 #from customGym.envs.NetworkEnv import NetworkState
 from typing import NamedTuple
 from pathlib import Path
 
-from central_service.variables import *
-import central_service.variables as GLOBAL_VARIABLES
+from variables import *
+import variables as GLOBAL_VARIABLES
 
 #not_my_data = set(globals())
 

@@ -15,7 +15,8 @@ import numpy as np
 from torch.autograd import Variable
 import pandas as pd
 
-from central_service.variables import GAMMA, LSTM_HIDDEN
+#changed central_serice.variables to variables
+from variables import GAMMA, LSTM_HIDDEN
 
 # hyperparameters
 #hidden_size = 256

@@ -1,5 +1,6 @@
 # Thesis
-
+conda activate mpquicrl
+cd code/mpquic-rl
 
 Useful links:
 ttps://multipath-quic.org/2017/12/09/artifacts-available.html 
@@ -100,7 +101,9 @@ there is a runs.zip file located in Code/main/mpquic-rl/central_service/, this f
 
 4 may:
 placed mpquic-rl in code github, moved the runs folder
+fixed runs.zip location, extracted to proper file
 
+the fix for the config_logger did not work. this is not a package but another file, now seems to be resolved (changed "from utils.logger import config_logger" to "from central_service.utils.logger import config_logger")
 
 
 
