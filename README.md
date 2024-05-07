@@ -112,7 +112,8 @@ FileNotFoundError: [Errno 2] No such file or directory: 'ssh -p 2222 mininet@loc
 i dont understand where this error is coming from, it should not be looking for  a file but run this command.
 
 
-
+7 may:
+since i dont know a solution to the problem from 6 may, lets try to get the original mpquic-rl by kakanis running.
 
 
 
