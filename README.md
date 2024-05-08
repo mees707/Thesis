@@ -114,7 +114,8 @@ i dont understand where this error is coming from, it should not be looking for 
 
 7 may:
 since i dont know a solution to the problem from 6 may, lets try to get the original mpquic-rl by kakanis running.
-
+running this command: qemu-img convert -O qcow2 vm-mpquic-sbd.vmdk vm-mpquic-sbd.qcow2
+seems to fix the broken VM, but only works on windows.
 
 
 
