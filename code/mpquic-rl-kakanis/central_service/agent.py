@@ -32,12 +32,12 @@ RANDOM_SEED = 42
 RAND_RANGE = 1000000
 GRADIENT_BATCH_SIZE = 8
 
-SUMMARY_DIR = ''
-LOG_FILE = ''
-NN_MODEL = ''
+SUMMARY_DIR = 'logs/'
+LOG_FILE = './logs/tf_log.log'
+NN_MODEL = None
 EPOCH = 0
 
-SSH_HOST = '192.168.122.157'
+SSH_HOST = 'localhost'
 
 
 def environment(bdw_paths: mp.Array, stop_env: mp.Event, end_of_run: mp.Event):
