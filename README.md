@@ -114,10 +114,16 @@ i dont understand where this error is coming from, it should not be looking for 
 
 7 may:
 since i dont know a solution to the problem from 6 may, lets try to get the original mpquic-rl by kakanis running.
+
+8 may:
 running this command: qemu-img convert -O qcow2 vm-mpquic-sbd.vmdk vm-mpquic-sbd.qcow2
 seems to fix the broken VM, but only works on windows.
 
-
+9 may:
+got the working VM from pijus, this work is done for now
+solving dependancy/version/depricated issues for the repository is now the main focus.
+using python 3.6 is not an option anymore since gym is depricated for python 3.7, along with quite a few other packages.
+now switched to using python 3.9 which required manually installing packages. i am creating this in a conda env so it should be easy to save and then recreate once it is working.
 
 
 
