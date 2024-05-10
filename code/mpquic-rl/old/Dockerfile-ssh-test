@@ -1,0 +1,8 @@
+#entry copied from https://github.com/rixsilverith/mininet-docker/tree/main
+FROM ubuntu:22.04
+
+RUN apt-get update && apt-get install -y openssh-server
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+COPY id_rsa.pub /root/.ssh/authorized_keys
+
+ENTRYPOINT service ssh start && bash

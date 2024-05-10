@@ -1,0 +1,67 @@
+#make middle output to stdout (cant do it the old way, cause causes pipe deadlock)
+#if stdout is not specified (instead of subprocess.PIPE), middleware causes the mtcp ssh to time out....
+#seems subprocess.PIPE is evil, should be avoided.
+
+#make minitopo files generate while running and not just after
+make subprocesses fail correctly when exiting
+core py minitopo: fix the python 3 issue
+#compiling go (server and client) takes 64s, can try fix by upgrading go. 
+#Also ssh command at start of run / just compile it when moving from host
+
+#idea for env: return reward at the end step only, step includes sending and waiting for a request.
+idea for model: separate observation(network condition) sending with request. Send network params every 50ms
+
+-connect scheduler to middleware
+-make client provide QOE features to scheduler
+	-modify AStream to make a zeromq publisher
+	-downshifts should maybe consider how much lower the bitrate is 
+-make infrastrucre to run experiment from agent
+
+-get a longer video for dash to play
+-make scheduler choose a path every 50ms
+	-use non blocking connection to model
+-modify model to use actions (minrtt, own judgements like chunk manager paper)
+	-make a propabilistic scheduler
+	
+#might not be too important, netflix seems to work well now
+videos
+	#Recomvert video to be the same bitrate
+	Make segments amller(2 sec)
+	Cut off astream if taking lomger than video length 
+-make client not use RL scheduling
+-Make sure models have random seed set
+-make model do exploration
+-do not wait for zero path failures
+
+make sure models use propabilistic action picking and not argmax
+-use trace data
+	-process traces
+	-make sure traces are long enough
+	-read csv file and apply it to connections in mininet
+	-provide bandwidth to scheduler
+	
+-videos
+	-make it into 2 second segments
+	-add higher bitrates
+-fix concurency in scheduler
+	
+-implement trace picking in environement
+	-use 2 traces for a mobile test
+	-do train-test split
+-make storage for runs
+	
+-run minrtt on test data
+
+perhaps delay reward by 5-6 steps/second = 11 steps. Cause reward arrives every 2 seconds, apply reward to later actions
+implement LSTM model
+make sure continual training works
+
+finish falcon
+	understand how interaction with meta models works
+	define meta model ranges
+	save model
+	train offline models
+
+
+
+

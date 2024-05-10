@@ -1,0 +1,196 @@
+the DICE model uses A2C with a linear reg. critic, replace with fully NN one
+
+modified cherry files:
+torch_wrapper.py
+runner_wrapper.py
+__init__.py
+
+#04/27
+avalance-rl files:
+rl_scenario.py (due to gym vs gymnasium)
+env_wrappers.py (due to use of gym=0.21)
+
+dqn.py, line 126. For some reason number of rollouts its not considered
+rl_base_strategy.py, line 494. Should not reset before close
+rl_base_strategy.py, line 397. Eval every cant be zero cause modulo
+
+issues with reset, perhaps modify server to send an initial network observation?
+
+#04/28
+Calling reset before closes causes issues. Can be fixed by making initial observation be based on topo used by env.
+
+#05/09
+Compiling linux kernel for use in docker, used these guides
+https://hackmd.io/@jxzhe/rkjEdtN13
+https://gist.github.com/oleksis/eb6d2f1cd2a6946faefb139aa0e38c35
+https://wsl.dev/wslcilium/
+https://zhuanlan.zhihu.com/p/138933513
+https://github.com/microsoft/WSL/issues/8319 (make sure to have all files in wsl home)
+https://forums.docker.com/t/docker-credential-desktop-exe-executable-file-not-found-in-path-using-wsl2/100225/5
+
+kernel=C:\\Users\\Admin\\bzImage #kernel option in .wslconfig
+
+run docker inside wsl:
+cd /mnt/c/Programming/MPQUIC-meta-learning/Code/main
+sh runDocker.sh
+exit #to exit
+mn --test pingall # test mininet
+
+#05/10
+https://www.howtogeek.com/devops/how-to-ssh-into-a-docker-container/
+https://stackoverflow.com/questions/37160574/asked-password-when-ssh-to-container
+for some reason docker now works, before was stuck on starting engine. Perhaps installing docker on wsl made it work?
+Yep that was the reason. I had added wsl integration with both default and test distros. It tried to run the non default distro but it did not have docker correctly set up.
+happened again. What fixed it was wsl --shutdown while docker still starting or going to ubuntu and running docker there
+indeed seems like shutting down, docker stats on ubuntu and then starting docker desktop makes it work.
+
+#mininet resource limits error, not sure if causes problems
+https://github.com/moby/moby/issues/39518
+https://stackoverflow.com/questions/42920605/mininets-cli-get-errorerror-setting-resource-limits-mininets-performance-may
+https://github.com/mininet/mininet/issues/529
+
+if ssh error changed, delete C:\Users\Admin\.ssh\known_hosts
+
+#05/11
+seems when running docker through wsl, ssh without password does not work. Git bash might be bad cause /lib/modules cant be accessed
+running local docker on wsl seems to work
+do not forget to install kernel modules
+mptcp v0 is used by the code provided, while the kernel has mptcp v1. The latest supported version of mptcp v0 is 5.4
+
+trying microsoft 5.4 kernel
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=1d489151e9f9d1647110277ff77282fe4d96d09b #without this, fails
+
+Ok no more docker. The compiled kernel does not work on wsl. Moving on to VM
+
+#05/12
+https://gist.github.com/nikhita/432436d570b89cab172dcf2894465753
+updating to go 1.12
+curl -OL https://golang.org/dl/go1.12.2.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.12.2.linux-amd64.tar.gz
+
+install sbd
+export GOPROXY=https://proxy.golang.org
+https://github.com/golang/go/issues/48713 #certificate issues
+
+used vm from here
+converted to vmdk from raw
+qemu-img convert -O vmdk vm-mpquic-sbd.img original.vmdk #convert sbd vm
+it says disk was damaged, i let it try to fix it.
+https://stackoverflow.com/questions/35821245/github-server-certificate-verification-failed
+https://askubuntu.com/questions/30072/how-do-i-fix-a-problem-with-mergelist-or-status-file-could-not-be-parsed-err
+seems the /var/lib/dpkg/status was corrupted, replaced with .old version
+
+git clone https://github.com/thomaswpp/mpquic-sbd.git # have this on windows
+
+#05/13
+https://github.com/golang/go/issues/33530 #seems some requirement for quic-go was broken
+rebuilding seems to have fixed issue with https://sourceware.org/bugzilla/show_bug.cgi?id=22380
+copying .so file causes issues, do not copy/rebuild after
+Converting big buck bunny mp4 to mpeg format on VM
+
+https://www.powercms.in/article/how-install-ffmpeg-ubuntu-1404-1410-and-linux-mint
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:mc3man/trusty-media
+sudo apt update
+sudo apt install ffmpeg
+
+#05/15
+researcher code still uses python2 in places, ill keep it at 2 for now but this is cursed
+move middleware to "~/go/src/github.com/mkanakis/middleware/", "sudo apt-get install libzmq3-dev", build to "~/go/bin/middleware"
+
+updating bandwidth of a path seems to been disabled by mpquic-rl, needs to be implemented
+bdw_stats.go: UpdateBDW() gets called in ReceivedAck()
+could try modify RTT stats instead of creating a new field as this requires a lot of propagation through the library code
+
+#05/16
+https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/ #setup wsl no pass, does not work for rsync
+
+https://github.com/golang/go/issues/29132 tried to speed up go build, seems -buildmode=c-shared building tries to install in root
+
+#05/17
+for some reason you need to connect instead of bind using a publisher in dash
+https://medium.com/@josueparra2892/golang-channels-8b22570cbfca
+https://gobyexample.com/non-blocking-channel-operations
+
+#05/18
+https://github.com/gpac/gpac
+converting my own video is causing issues cause mp4box outputs a specific (and more modern) mpd file, 
+while astream does not support it. Time to change astream code...
+to anyone reading this, do not use Astream. It has terrible code for reading mpd files.
+decided to hack the sara format support instead, do not do this!!!!
+sara and netflix dont have something in the mpd, they fail
+with the current video the blasic dash playback causes a lot of issues with jumping between low and higher bitrate. Difference between bitrates is 3x.
+
+#05/19
+netflix now works, the code was just dumb. It does seem to buffer for a long time
+
+#05/22
+could try using a unified qoe evaluation model https://ieeexplore-ieee-org.proxy.uba.uva.nl/document/8666971
+
+use 5g dataset, use bandwith and average ping. Replace nan ping/loss values. Do second pass and do a moving average(window=15) over the ping and loss. Min Bandwith of 50kb.
+Only download
+
+the vm is absolutely cursed, installing packages with python does not work. 
+
+#05/23
+seems other people simply provide very high quality video to cause full use of bandwith, gonna do that too probably. (https://ieeexplore-ieee-org.proxy.uba.uva.nl/document/7546928)
+
+modifed NETFLIX_BUFFER_SIZE = 5 in config_dash.py
+kill $(lsof -t -i:6633)
+https://github.com/intrig-unicamp/mininet-wifi/issues/96
+
+#05/24
+issue with multithreading and zmq, used mutex lock so schedule rl is not called at the same time by multiple threads
+ https://stackoverflow.com/questions/50872929/declare-mutex-variable-in-package-level-is-good-practice
+ 
+based on quic notes on max tcp congestion window, there can be 3.5MB in flight. Meaning with an RTT of 100ms a max bandwith of 35MB/s
+
+#05/25
+when frequency of calling model is below 100ms, there can be multithreading issues with zclient. Added a mutex lock
+
+https://github.com/pytorch/examples/blob/main/reinforcement_learning/actor_critic.py
+https://github.com/yc930401/Actor-Critic-pytorch/blob/master/Actor-Critic.py
+changing model loss to look like these
+
+to install numpy, get wheel, rename to cv_py-0.1.0-cp38-cp38-linux_x86_64.whl (important part is manylinux to linux)
+
+#05/26
+reward delay (and sparsity) is a big limitation when dealing with qoe
+making reward not sparse anymore, report previous known bitrate.
+
+using buffer size of 10, so 20 seconds
+seems video needs keyint for corrent lengths in segments, otherwise inconsitent based on fps
+
+min rtt finally done
+
+#05/27
+https://shmuma.medium.com/summary-noisy-networks-for-exploration-c8ba6e2759c7
+I will use only epsilon for now, as it achieves the same thing as entropy
+
+https://stackoverflow.com/questions/66187443/lstm-detach-the-hidden-state
+this says to detach memory, but "Reinforcement Learning with Long-Short term Memory" does use cec(long term memory cells) for propagation
+https://stackoverflow.com/questions/48274929/pytorch-runtimeerror-trying-to-backward-through-the-graph-a-second-time-but
+this also says you can use it in further computation
+
+running lstm with 0.001 loss, by the looks might be a decent idea to use 0.002
+
+#05/28
+lstm performs worse then minrtt or equal on some metrics
+causes possible: use of on-policy algorithm, reward delay, latency between model and actions.
+Makes it hard to adapt other models: n-step loss instead of episodic,
+basically not a simulation, but a real world run that is online. Can not rerun train data
+Online+offline models perform best.
+ 
+turns out my action space was wrong, so the model could not choose to not use path 2
+
+A Survey of Meta-Reinforcement Learning:
+This problem is a single task, few shot meta RL proble. There are very few models that deal in this domain and its a difficult field due to inner loop task boundaries.
+
+#05/29
+qoe:
+lstm: 1.2713934629278612 (another run was 1.24, so this is just noise)
+Also got 1.35 on big run.
+minrtt: 1.2464238512100239
+
+when training a2c, in segment 3 (trace static_184) there was a huge buffering event
+

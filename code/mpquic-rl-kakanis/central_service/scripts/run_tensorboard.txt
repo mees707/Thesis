@@ -1,2 +1,0 @@
-# command to spawn it from venv (tensorflow is installed at venv)
-python -m tensorboard.main --logdir $PWD/logs
