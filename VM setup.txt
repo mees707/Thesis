@@ -1,0 +1,48 @@
+steps on how to replicate the VM used in the experiments (on windows):
+
+setting up the software that will run the VM (might be possible on other VM software but not tested)
+
+1) download QEMU for windows:
+   https://qemu.weilnetz.de/
+   go to w64 -> qemu-w64-setup-<version>.exe   
+   follow installer instructions
+2) setting up PATH:
+   go to system properties -> Advanced -> Environment Variables
+   click on path -> select edit -> New 
+   insert the location where qemu is downloaded (most likely C:\Program Files\qemu)
+   check if done properly by running qemu-system-x86_64.exe in CMD or powershell
+3) download the VM (need to set up a download link)
+   
+
+launcing the VM and setting up SSH:
+1) open a terminal in the location of the VM
+   run:
+     qemu-system-x86_64.exe -boot d -hda .\vm-mpquic-sbd-new.vmdk -m 8192 -smp 8 -net user,hostfwd=tcp::2222-:22,hostfwd=tcp::5555-:5555,hostfwd=tcp::5556-:5556 -net nic
+   this will open qemu with port 2222
+2) generating the key (host):
+     ssh-keygen -t ed25519 (or use another encryption method, RSA did not work for me)
+   moving the key from host to vm (the vm should be running, executed on host):
+     scp -P 2222 location/of/key/id_ed25519.pub mininet@localhost:/tmp (replace location with actual location, or move the key to folder the terminal is opened in)
+   ssh into vm(host):
+     ssh -p 2222 mininet@localhost
+   move file inside of vm to correct place(vm)
+     cat /tmp/id_ed25519.pub >> ~/.ssh/authorized_keys
+   this might give an error such as file not found, in that case:
+     mkdir -p ~/.ssh
+   and try again   
+3) after this is done, log off and try (host)
+     ssh -p 2222 mininet@localhost
+   there should not be a password promt anymore.
+
+
+THIS IS STILL A WORK IN PROGRESS, ALTHOUGH MOST STEPS ARE HERE NOW
+
+
+
+NOT YET CLEAR ABOUT THESE STEPS:
+# Create if it does not exists yet
+The second one is to mount the file measurement location on the RAM. This should limit the impact of the hard disk on the results.
+$ sudo mkdir /mnt/tmpfs
+# This should be run each time the VM is restarted
+$ sudo mount -t tmpfs -o size=256M tmpfs /mnt/tmpfs
+steps dont work so far
