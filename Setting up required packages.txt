@@ -1,5 +1,9 @@
+This project is running on Python 3.9
+
+
 should be as simple as just running:
 conda env create -f environment.yml
+this will create an env called mpquic39 with all needed packages.
 
 requires conda.
 
