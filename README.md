@@ -125,8 +125,10 @@ solving dependancy/version/depricated issues for the repository is now the main 
 using python 3.6 is not an option anymore since gym is depricated for python 3.7, along with quite a few other packages.
 now switched to using python 3.9 which required manually installing packages. i am creating this in a conda env so it should be easy to save and then recreate once it is working.
 
+10 may:
+environment is done, also created a short tutorial for setting up the VM (on windows)
 
 
-
-
+13 may:
+working on improving the QoE
 
