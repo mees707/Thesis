@@ -137,3 +137,6 @@ shortcut to correct place
 cd  code\mpquic-rl\mpquic-rl\central_service
 python main.py
 training model using minrrt to set a baseline. Dont understand fully yet why it starts at trace 9, and what should be used when training a new model, since it seems to be running on models that are created before.
+no need to seperately safe the plots, they get saved but are in gitignore, saved under central_service\logs\log number
+
+due to a mistake in the code somewhere the logs get saved in two different file locations, one in the main directory and the other in the correct central service folder. needs to get fixed.
