@@ -17,7 +17,7 @@ setting up the software that will run the VM (might be possible on other VM soft
 launcing the VM and setting up SSH:
 1) open a terminal in the location of the VM
    run:
-     qemu-system-x86_64.exe -boot d -hda .\vm-mpquic-sbd-new.vmdk -m 8192 -smp 8 -net user,hostfwd=tcp::2222-:22,hostfwd=tcp::5555-:5555,hostfwd=tcp::5556-:5556 -net nic
+     qemu-system-x86_64.exe -boot d -hda vm-mpquic-sbd-new.vmdk -m 8192 -smp 8 -net user,hostfwd=tcp::2222-:22,hostfwd=tcp::5555-:5555,hostfwd=tcp::5556-:5556 -net nic
    this will open qemu with port 2222
 2) generating the key (host):
      ssh-keygen -t ed25519 (or use another encryption method, RSA did not work for me)

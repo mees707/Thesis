@@ -132,3 +132,8 @@ environment is done, also created a short tutorial for setting up the VM (on win
 13 may:
 working on improving the QoE
 
+14 may:
+shortcut to correct place 
+cd  code\mpquic-rl\mpquic-rl\central_service
+python main.py
+training model using minrrt to set a baseline. Dont understand fully yet why it starts at trace 9, and what should be used when training a new model, since it seems to be running on models that are created before.

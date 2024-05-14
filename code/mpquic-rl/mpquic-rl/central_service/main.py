@@ -185,7 +185,7 @@ class ChangeDetect:
         return change
 class FalconMemory(ChangeDetect):
     def __init__(self):
-        super().__init__()
+        super().__init__(logger=None) # TypeError: __init__() missing 1 required positional argument: 'logger'
         self.lookback = 3
         self.observations = []
         self.models: list[SavedModel] = []
