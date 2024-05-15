@@ -140,3 +140,14 @@ training model using minrrt to set a baseline. Dont understand fully yet why it 
 no need to seperately safe the plots, they get saved but are in gitignore, saved under central_service\logs\log number
 
 due to a mistake in the code somewhere the logs get saved in two different file locations, one in the main directory and the other in the correct central service folder. needs to get fixed.
+
+15 may:
+possible improvements to the system:
+- more extensive testing of parameters, has not been done yet.
+- gathering more data to train on, could be done by less strictly filtering the data.
+- using FALCON, it looks like this has not been used previously, and the implementation does not seem to work.
+
+somethings maybe worth looking into:
+- Proximal Policy Optimization
+- Deep Q-Networks 
+

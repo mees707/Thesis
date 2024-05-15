@@ -4,17 +4,17 @@ REMOTE_SERVER_RUNNER_HOSTNAME = ["mininet@localhost"]
 REMOTE_SERVER_RUNNER_PORT = ["2222"]
 
 S_INFO = 6  # bandwidth_path_i, path_i_mean_RTT, path_i_retransmitted_packets + path_i_lost_packets
-A_DIM = 1#6 # 0 = minrtt, 1 = 0% path 1, 3 = 50%, 5 = 100% path 1
+A_DIM = 5#6 # 0 = minrtt, 1 = 0% path 1, 3 = 50%, 5 = 100% path 1
 # so A_dim = 6 is a max output action of 5
 
 
 
 #model_name = 'minrtt' #'FALCON'
-model_name = 'minrtt'
+model_name = 'LSTM'
 #model_name = 'a2c'
 TRAINING = True #if true, store model after done, have high exploration
 MODE = 'train' if TRAINING else 'test'
-LOAD_MODEL = False
+LOAD_MODEL = True
 
 SEGMENT_LIMIT = 301#90#301
 EPISODES_TO_RUN = 9
