@@ -181,11 +181,11 @@ class ChangeDetect:
             change = True
             self.change_cooldown = self.cooldown_time
             #print("Change detected!")
-            self.logger.info("Change detected!")
+            # self.logger.info("Change detected!") #commented this part, dont think its necesary but was causing issues
         return change
 class FalconMemory(ChangeDetect):
     def __init__(self):
-        super().__init__(logger=None) # TypeError: __init__() missing 1 required positional argument: 'logger'
+        super().__init__(None) # TypeError: __init__() missing 1 required positional argument: 'logger'
         self.lookback = 3
         self.observations = []
         self.models: list[SavedModel] = []

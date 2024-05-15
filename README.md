@@ -151,3 +151,9 @@ somethings maybe worth looking into:
 - Proximal Policy Optimization
 - Deep Q-Networks 
 
+this would then be more of a general overview of state of the art methods of meta learning to improve streaming, i think this could be good.
+
+for now going to work on falcon.
+first trace runs succesfully but second trace giving the following error:
+Exception: Can not get observation when request is null
+think issue lies with trying to do multiple traces at once, maybe not resetting properly

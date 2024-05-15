@@ -10,15 +10,15 @@ A_DIM = 5#6 # 0 = minrtt, 1 = 0% path 1, 3 = 50%, 5 = 100% path 1
 
 
 #model_name = 'minrtt' #'FALCON'
-model_name = 'LSTM'
+model_name = 'FALCON'
 #model_name = 'a2c'
 TRAINING = True #if true, store model after done, have high exploration
 MODE = 'train' if TRAINING else 'test'
 LOAD_MODEL = True
 
 SEGMENT_LIMIT = 301#90#301
-EPISODES_TO_RUN = 9
-START_WITH_TRACE = 0
+EPISODES_TO_RUN = 7
+START_WITH_TRACE = 2
 
 # hyperparameters
 hidden_size = 256

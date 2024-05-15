@@ -7,3 +7,8 @@ this will create an env called mpquic39 with all needed packages.
 
 requires conda.
 
+
+
+cd  code\mpquic-rl\mpquic-rl\central_service
+conda activate mpquic39
+python main.py
