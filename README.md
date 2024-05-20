@@ -157,3 +157,6 @@ for now going to work on falcon.
 first trace runs succesfully but second trace giving the following error:
 Exception: Can not get observation when request is null
 think issue lies with trying to do multiple traces at once, maybe not resetting properly
+
+17 may:
+get_request(self.tqueue, self.logger, end_of_run=self.end_of_run) returns (None, None)

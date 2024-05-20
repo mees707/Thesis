@@ -29,7 +29,7 @@ from tqdm import tqdm
         # import central_service.variables as GLOBAL_VARIABLES
 
 
-from pytorch_models.metaModel import ActorCritic
+from pytorch_models.metaModelImprove import ActorCritic # importing the improved version
 from utils.data_transf import getTrainingVariables
 from utils.logger import config_logger
 from customGym.envs.NetworkEnv import NetworkEnv
@@ -313,6 +313,8 @@ def main():
             checkpoint = torch.load(LSTM_TRAINED_MODEL)
         if model_name == "a2c":
             checkpoint = torch.load(A2C_TRAINED_MODEL)
+        if model_name == "FALCON":
+            checkpoint = torch.load(FALCON_TRAINED_MODEL)          
         actor_critic.load_state_dict(checkpoint['model_state_dict'])
         ac_optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         actor_critic.lstm_memory = checkpoint['lstm_memory']
