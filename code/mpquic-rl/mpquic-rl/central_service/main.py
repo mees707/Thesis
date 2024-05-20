@@ -99,10 +99,12 @@ class _SDAR_1Dim(object):
             self._c[i] = (1 - self._r) * self._c[i] + self._r * (x - self._mu) * (term[-i] - self._mu)
         self._c[0] = (1-self._r)*self._c[0]+self._r * (x-self._mu)*(x-self._mu)
         what, e = LevinsonDurbin(self._c, self._order)
-        xhat = np.dot(-what[1:], (term[::-1] - self._mu))+self._mu
+        print(what, term, self._mu )
+        mu = self._mu.numpy() if isinstance(self._mu, torch.Tensor) else self._mu
+        xhat = np.dot(-what[1:], (term[::-1] - mu))+ mu
         self._sigma = (1-self._r)*self._sigma + self._r * (x-xhat) * (x-xhat)
         return -math.log(math.exp(-0.5*(x-xhat)**2/self._sigma)/((2 * math.pi)**0.5*self._sigma**0.5)), xhat
-
+    
 class ChangeFinder(_ChangeFinderAbstract):
     def __init__(self, r=0.5, order=1, smooth=7):
         assert order > 0, "order must be 1 or more."
@@ -276,10 +278,11 @@ def main():
     torch.manual_seed(42)
     num_inputs = S_INFO
     num_outputs = A_DIM
+    hidden_size = 128  # Define hidden_size as needed
     max_steps = 4000
 
-    run_id = datetime.now().strftime('%Y%m%d_%H_%M_%S')+f"_{model_name}_{MODE}"
-    log_dir = Path("runs/"+run_id)
+    run_id = datetime.now().strftime('%Y%m%d_%H_%M_%S') + f"_{model_name}_{MODE}"
+    log_dir = Path("runs/" + run_id)
     log_dir.mkdir(parents=True)
 
     logger = config_logger('agent', log_dir / 'agent.log')
@@ -288,8 +291,6 @@ def main():
     print(f"RUNNING MODEL: {model_name}")
     print(f"RUNNING MODE: {MODE}")
 
-    #actor_critic = ActorCriticMLP(num_inputs, num_outputs, hidden_size, hidden_size)
-    #print('other model', ActorCriticMLP(num_inputs, num_outputs, hidden_size, hidden_size))
     if model_name == 'FALCON':
         actor_critic = ActorCritic(num_inputs, num_outputs, hidden_size)
         memory = FalconMemory()
@@ -303,7 +304,6 @@ def main():
     ac_optimizer = optim.Adam(actor_critic.parameters(), lr=learning_rate)
     print('model', actor_critic)
 
-    #print(actor_critic.state_dict())
     all_lengths = []
     average_lengths = []
     all_rewards = []
@@ -314,21 +314,20 @@ def main():
         if model_name == "a2c":
             checkpoint = torch.load(A2C_TRAINED_MODEL)
         if model_name == "FALCON":
-            checkpoint = torch.load(FALCON_TRAINED_MODEL)          
+            checkpoint = torch.load(FALCON_TRAINED_MODEL)
         actor_critic.load_state_dict(checkpoint['model_state_dict'])
         ac_optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-        actor_critic.lstm_memory = checkpoint['lstm_memory']
-        #print(checkpoint['optimizer_state_dict'])
+        if actor_critic.use_lstm:
+            actor_critic.lstm_memory = (checkpoint['lstm_memory'][0].squeeze(0), checkpoint['lstm_memory'][1].squeeze(0))
+        else:
+            actor_critic.lstm_memory = None
         print("model loaded from checkpoint")
 
-    #
     total_steps = 0
     env: NetworkEnv = gym.make('NetworkEnv', mode=MODE)
     replay_memory = ReplayMemory()
 
-
-
-    with open(log_dir/"variables.json", "w") as outfile:
+    with open(log_dir / "variables.json", "w") as outfile:
         env_vars = {item: getattr(GLOBAL_VARIABLES, item) for item in dir(GLOBAL_VARIABLES) if
                     not item.startswith("__") and not item.endswith("__")}
         json.dump(env_vars, outfile, indent=4, sort_keys=False)
@@ -338,26 +337,26 @@ def main():
     with torch.autograd.set_detect_anomaly(True):
         for episode in range(START_WITH_TRACE, START_WITH_TRACE + EPISODES_TO_RUN):
             state = env.reset()
+            state = torch.Tensor(state)
+
+            actor_critic.reset_lstm_memory()  # Reset LSTM memory at the beginning of each episode
 
             start_time = time.time()
             reward_info = None
             rewards = []
             states = []
             loss_history = []
-            #stop_env.set()
             print("Episode ", episode)
-            #TODO handle max steps
+
             last_segment_update = 0
             segment_update_count = 0
-            for step in tqdm(range(max_steps)): #tqdm(
+            for step in tqdm(range(max_steps)):
 
                 if model_name != 'minrtt':
-                    value, policy_dist = actor_critic.forward(torch.Tensor(state))
+                    value, policy_dist, lstm_memory = actor_critic.forward(state, actor_critic.lstm_memory)
                     dist = policy_dist.detach().numpy()
 
                     sample = random.random()
-                    #eps_threshold = EPS_END + (EPS_START - EPS_END) * \
-                    #                math.exp(-1. * total_steps / EPS_DECAY)
                     eps_threshold = EPS_TRAIN if TRAINING else EPS_TEST
                     if sample > eps_threshold:
                         action = np.random.choice(num_outputs, p=np.squeeze(dist))
@@ -367,7 +366,7 @@ def main():
                     action = 0
 
                 new_state, reward, done, reward_info = env.step(action)
-                state = new_state
+                state = torch.Tensor(new_state)
                 states.append(state)
                 rewards.append(reward)
 
@@ -380,37 +379,26 @@ def main():
 
                 if model_name == 'FALCON':
                     change = memory.add_obs(state, actor_critic.state_dict())
-                    #if change:
-                    #    found = memory.findModel(state)
-                    #    if found is not None:
-                    #        actor_critic.load_state_dict(found)
-                    #    else: actor_critic.reset()
-                    #    replay_memory.clear()
 
-                change = False
                 if model_name == 'LSTM':
                     change = memory.add_obs(state)
                     if change:
-                        #actor_critic.reset_lstm_hidden()
-                        #replay_memory.clear()
                         segment_update_count = SEGMENT_UPDATES_FOR_LOSS
 
-                #ONLINE LOSS
                 if model_name != 'minrtt':
-                    #TODO make sure replay memory loss is used for previous model after change reset
                     if LOSS_SEGMENT_RETURN_BASED:
                         diff = step - last_segment_update
-                    else: diff = apply_loss_steps
+                    else:
+                        diff = apply_loss_steps
 
                     if total_steps % apply_loss_steps == 0 and total_steps > 0 and len(replay_memory) > apply_loss_steps:
-                    #if segment_update_count >= SEGMENT_UPDATES_FOR_LOSS and diff > 0:
                         memory_values = replay_memory.get_memory(diff)
                         ac_loss = actor_critic.calc_a2c_loss(*memory_values)
                         ac_optimizer.zero_grad()
-                        #retain_graph = True if model_name == 'LSTM' else False
-                        ac_loss.backward() #retain_graph=retain_graph
+                        ac_loss.backward()
                         ac_optimizer.step()
-                        if model_name == 'LSTM': actor_critic.lstm_after_loss()
+                        if model_name == 'LSTM':
+                            actor_critic.lstm_after_loss()
                         loss_history.append(ac_loss.detach().numpy())
                         msg = "TD_loss: {}, Avg_reward: {}, Avg_entropy: {}".format(ac_loss, np.mean(memory_values[2]),
                                                                                     np.mean(replay_memory.entropy_terms))
@@ -419,7 +407,7 @@ def main():
                         segment_update_count = 0
 
                 if model_name == 'LSTM' and change:
-                    actor_critic.reset_lstm_hidden()
+                    actor_critic.reset_lstm_memory()
                     replay_memory.clear()
 
                 total_steps += 1
@@ -427,17 +415,17 @@ def main():
                 if done:
                     break
 
-            if model_name == 'LSTM': actor_critic.reset_lstm_hidden()
-            #if len(log_probs) == 0:
-            #    continue
+                if lstm_memory is not None:
+                    actor_critic.lstm_memory = (lstm_memory[0].detach(), lstm_memory[1].detach())
 
-            # compute Q values
-            #Qval, _ = actor_critic.forward(torch.tensor(state))
+
+            if model_name == 'LSTM':
+                actor_critic.reset_lstm_hidden()
 
             torch.save({
                 'model_state_dict': actor_critic.state_dict(),
                 'optimizer_state_dict': ac_optimizer.state_dict(),
-                'lstm_memory': actor_critic.lstm_memory
+                'lstm_memory': lstm_memory
             }, log_dir / f"{episode}_model.tar")
 
             np.savetxt(log_dir / f"{episode}_rewards.csv", np.array(rewards), delimiter=", ", fmt='% s')
@@ -446,7 +434,6 @@ def main():
             segment_rewards = pd.DataFrame(env.segment_rewards)
             segment_rewards.to_csv(log_dir / f"{episode}_segments.csv")
 
-            #torch.save(actor_critic.state_dict(), log_dir / "")
             segment_rewards['qoe_smooth'] = segment_rewards['qoe'].rolling(10).mean()
             segment_rewards[['qoe', 'qoe_smooth']].plot()
             plt.title(f'QOE {run_id} {episode}')
@@ -459,14 +446,12 @@ def main():
             plt.show()
 
             logger.debug("====")
-            #segment_rewards['qoe'].values[-1]
-            avg_qoe = segment_rewards[segment_rewards['segment_nr']==segment_rewards['segment_nr'].max()]['qoe'].mean()
+            avg_qoe = segment_rewards[segment_rewards['segment_nr'] == segment_rewards['segment_nr'].max()]['qoe'].mean()
             logger.debug(f"Epoch: {episode}, qoe: {avg_qoe}")
             print(f"Epoch: {episode}, qoe: {avg_qoe}")
-            #msg = "TD_loss: {}, Avg_reward: {}, Avg_entropy: {}".format(ac_loss, np.mean(replay_memory.rewards),
-            #                                                            entropy_term)
-            #logger.debug(msg)
             logger.debug("====")
+
+
 
 
 
