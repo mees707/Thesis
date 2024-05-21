@@ -5,16 +5,22 @@ import queue
 from threading import Event
 import multiprocessing as mp
 
-def get_request(queue: queue.Queue, logger, end_of_run: mp.Event = None):
+import queue
+import multiprocessing as mp
+import logging
+
+def get_request(q: queue.Queue, logger: logging.Logger, end_of_run: mp.Event = None):
     logger.info("Waiting for request...")
     while not end_of_run.is_set():
         try:
-            req, evt = queue.get(timeout=0.05)
+            req, evt = q.get(timeout=0.05)
+            logger.info(f"Received request: {req}")
             return req, evt
-        except Exception as ex:
-            #logger.error(repr(ex))
+        except queue.Empty:
             continue
+    logger.info("End of run detected in get_request.")
     return None, None
+
 
 def put_response(response, queue: queue.Queue, logger):
     logger.info("Putting response...")

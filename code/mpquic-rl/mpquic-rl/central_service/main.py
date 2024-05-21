@@ -280,7 +280,8 @@ def main():
     num_outputs = A_DIM
     hidden_size = 128  # Define hidden_size as needed
     max_steps = 4000
-
+    lstm_memory = None
+    
     run_id = datetime.now().strftime('%Y%m%d_%H_%M_%S') + f"_{model_name}_{MODE}"
     log_dir = Path("runs/" + run_id)
     log_dir.mkdir(parents=True)
@@ -338,8 +339,8 @@ def main():
         for episode in range(START_WITH_TRACE, START_WITH_TRACE + EPISODES_TO_RUN):
             state = env.reset()
             state = torch.Tensor(state)
-
-            actor_critic.reset_lstm_memory()  # Reset LSTM memory at the beginning of each episode
+            if model_name != 'minrtt':
+                actor_critic.reset_lstm_memory()  # Reset LSTM memory at the beginning of each episode
 
             start_time = time.time()
             reward_info = None

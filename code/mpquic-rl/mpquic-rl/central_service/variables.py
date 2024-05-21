@@ -10,7 +10,7 @@ A_DIM = 5#6 # 0 = minrtt, 1 = 0% path 1, 3 = 50%, 5 = 100% path 1
 
 
 #model_name = 'minrtt' #'FALCON'
-model_name = 'LSTM'
+model_name = 'a2c'
 #model_name = 'a2c'
 TRAINING = True #if true, store model after done, have high exploration
 MODE = 'train' if TRAINING else 'test'
