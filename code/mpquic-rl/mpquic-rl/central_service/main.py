@@ -99,7 +99,7 @@ class _SDAR_1Dim(object):
             self._c[i] = (1 - self._r) * self._c[i] + self._r * (x - self._mu) * (term[-i] - self._mu)
         self._c[0] = (1-self._r)*self._c[0]+self._r * (x-self._mu)*(x-self._mu)
         what, e = LevinsonDurbin(self._c, self._order)
-        print(what, term, self._mu )
+        # print(what, term, self._mu )
         mu = self._mu.numpy() if isinstance(self._mu, torch.Tensor) else self._mu
         xhat = np.dot(-what[1:], (term[::-1] - mu))+ mu
         self._sigma = (1-self._r)*self._sigma + self._r * (x-xhat) * (x-xhat)
@@ -187,7 +187,7 @@ class ChangeDetect:
         return change
 class FalconMemory(ChangeDetect):
     def __init__(self):
-        super().__init__(None) # TypeError: __init__() missing 1 required positional argument: 'logger'
+        super().__init__() # TypeError: __init__() missing 1 required positional argument: 'logger'
         self.lookback = 3
         self.observations = []
         self.models: list[SavedModel] = []

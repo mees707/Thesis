@@ -348,14 +348,38 @@ class NetworkEnv(gym.Env):
             # clear the queue
             self.cqueue.queue.clear()
 
+        # Add logging to understand the state of the request
+        self.logger.info("Resetting environment. Fetching new request...")
+        self.logger.info(f"State before fetching request: cqueue size={len(self.cqueue.queue)}, tqueue size={len(self.tqueue.queue)}, end_of_run={self.end_of_run.is_set()}")
+        
         if self.request is None:
-            self.request, ev1 = get_request(self.tqueue, self.logger, end_of_run=self.end_of_run)
-            #print(self.request)
-            if self.request is not None:
-                ev1.set()  # let `producer` (rh) know we received request
-
-        observation = self._get_obs()
-
+            self.logger.info("Request is initially None, attempting to get a new request.")
+            
+            # Retry mechanism for fetching request
+            retries = 3
+            while retries > 0:
+                self.request, ev1 = get_request(self.tqueue, self.logger, end_of_run=self.end_of_run)
+                if self.request is not None:
+                    self.logger.info(f"Received new request: {self.request}")
+                    ev1.set()  # let `producer` (rh) know we received request
+                    break
+                else:
+                    self.logger.warning("Failed to receive a new request. Retrying...")
+                    retries -= 1
+                    time.sleep(2)  # wait for 2 seconds before retrying
+            
+            if self.request is None:
+                self.logger.error("Failed to receive a new request after multiple attempts.")
+        
+        try:
+            observation = self._get_obs()
+            self.logger.info(f"Observation after reset: {observation}")
+        except Exception as e:
+            self.logger.error(f"Exception in _get_obs: {e}")
+            raise
+        
+        self.logger.info(f"State after fetching request: cqueue size={len(self.cqueue.queue)}, tqueue size={len(self.tqueue.queue)}, end_of_run={self.end_of_run.is_set()}")
+        
         if gym_compat:
             return observation
         return observation, info

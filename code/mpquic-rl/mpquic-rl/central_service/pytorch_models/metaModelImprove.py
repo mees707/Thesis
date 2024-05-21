@@ -72,6 +72,10 @@ class ActorCritic(nn.Module):
             self.lstm_memory = (torch.zeros(1, 1, self.hidden_size), torch.zeros(1, 1, self.hidden_size))
         else:
             self.lstm_memory = None
+            
+    def reset_lstm_hidden(self):
+        if self.lstm_memory is not None:
+            self.lstm_memory = (torch.zeros(layers, LSTM_HIDDEN), self.lstm_memory[1].detach())
 
     def calc_a2c_loss(self, Qval, values, rewards, log_probs, entropy_terms):
         #return self.alternate_loss(Qval, values, rewards, log_probs, entropy_terms)

@@ -149,7 +149,7 @@ possible improvements to the system:
 
 somethings maybe worth looking into:
 - Proximal Policy Optimization
-- Deep Q-Networks 
+- Deep Q-Networks    
 
 this would then be more of a general overview of state of the art methods of meta learning to improve streaming, i think this could be good.
 
@@ -160,3 +160,17 @@ think issue lies with trying to do multiple traces at once, maybe not resetting 
 
 17 may:
 get_request(self.tqueue, self.logger, end_of_run=self.end_of_run) returns (None, None)
+
+20 may:
+ Improvements
+Network Architecture:
+The network now optionally includes an LSTM layer for handling sequential data.
+Two linear layers each for the actor and critic networks are used, improving their capacity.
+Weight Initialization:
+
+Kaiming normalization is used to initialize the weights, which helps in training deep networks.
+Forward Method:
+The forward method processes the input and handles the LSTM state if applicable, providing better sequence modeling.
+
+21 may:
+trying to fix the issue that i can run more than one run since it makes it impossible to test my improvements as of now.

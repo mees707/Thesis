@@ -17,8 +17,8 @@ MODE = 'train' if TRAINING else 'test'
 LOAD_MODEL = False
 
 SEGMENT_LIMIT = 301#90#301
-EPISODES_TO_RUN = 1
-START_WITH_TRACE = 8
+EPISODES_TO_RUN = 10
+START_WITH_TRACE = 0
 
 # hyperparameters
 hidden_size = 256
