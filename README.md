@@ -174,3 +174,6 @@ The forward method processes the input and handles the LSTM state if applicable,
 
 21 may:
 trying to fix the issue that i can run more than one run since it makes it impossible to test my improvements as of now.
+
+22 may:
+writing related work

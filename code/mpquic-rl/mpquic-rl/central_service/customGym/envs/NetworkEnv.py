@@ -33,7 +33,7 @@ from centraltrainer.request_handler import RequestHandler
 from centraltrainer.collector import Collector
 from environment.environment import Environment
 from utils.logger import config_logger
-from utils.queue_ops import get_request, put_response
+from utils.queue_ops import get_request, put_response, get_request_reset
 from utils.data_transf import arrangeStateStreamsInfo, getTrainingVariables, allUnique
 from variables import REMOTE_HOST, A_DIM, INTERMEDIATE_REWARD, SPARSE_REWARD
 
@@ -332,57 +332,33 @@ class NetworkEnv(gym.Env):
 # ``_get_info`` that we implemented earlier for that:
 
     def reset(self, seed=None, options=None, return_info=False):
+        # We need the following line to seed self.np_random
         print("reset")
-        
+
         super().reset(seed=seed)
         self.segment_rewards = []
         self.previous_reward = None
         self.request = None
-        
+
         info = self._get_info()
-        
+
         self.end_of_run.clear()
-        
+
         with self.cqueue.mutex:
-            # Clear the queue
+            # clear the queue
             self.cqueue.queue.clear()
-        
-        self.logger.info("Resetting environment. Fetching new request...")
-        self.logger.info(f"State before fetching request: cqueue size={self.cqueue.qsize()}, tqueue size={self.tqueue.qsize()}, end_of_run={self.end_of_run.is_set()}")
-        
-        retries = 3
-        while retries > 0:
-            self.request, ev1 = get_request(self.tqueue, self.logger, end_of_run=self.end_of_run)
-            if self.request is not None:
-                self.logger.info(f"Received new request: {self.request}")
-                ev1.set()  # Let `producer` (request handler) know we received request
-                break
-            elif self.end_of_run.is_set():
-                self.logger.info("End of run detected. No more requests will be processed.")
-                break
-            else:
-                self.logger.warning("Failed to receive a new request. Retrying...")
-                retries -= 1
-                time.sleep(2)  # Wait for 2 seconds before retrying
-        
+
         if self.request is None:
-            self.logger.error("Failed to receive a new request after multiple attempts. Ending run.")
-            self.end_of_run.set()
-            raise Exception('Cannot get observation when request is null')
-        
-        try:
-            observation = self._get_obs()
-            self.logger.info(f"Observation after reset: {observation}")
-        except Exception as e:
-            self.logger.error(f"Exception in _get_obs: {e}")
-            raise
-        
-        self.logger.info(f"State after fetching request: cqueue size={self.cqueue.qsize()}, tqueue size={self.tqueue.qsize()}, end_of_run={self.end_of_run.is_set()}")
-        
+            self.request, ev1 = get_request_reset(self.tqueue, self.logger, end_of_run=self.end_of_run)
+            #print(self.request)
+            if self.request is not None:
+                ev1.set()  # let `producer` (rh) know we received request
+
+        observation = self._get_obs()
+
         if gym_compat:
             return observation
         return observation, info
-
 
 # %%
 # Step

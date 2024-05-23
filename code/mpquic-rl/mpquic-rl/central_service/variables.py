@@ -10,15 +10,15 @@ A_DIM = 5#6 # 0 = minrtt, 1 = 0% path 1, 3 = 50%, 5 = 100% path 1
 
 
 #model_name = 'minrtt' #'FALCON'
-model_name = 'a2c'
+model_name = 'LSTM'
 #model_name = 'a2c'
 TRAINING = True #if true, store model after done, have high exploration
 MODE = 'train' if TRAINING else 'test'
-LOAD_MODEL = False
+LOAD_MODEL = True
 
 SEGMENT_LIMIT = 301#90#301
-EPISODES_TO_RUN = 10
-START_WITH_TRACE = 0
+EPISODES_TO_RUN = 1
+START_WITH_TRACE = 9
 
 # hyperparameters
 hidden_size = 256
@@ -41,9 +41,9 @@ LOSS_SEGMENT_RETURN_BASED = False
 COOLDOWN_TIME = 60
 CHANGE_PROB = 50.0
 
-LSTM_TRAINED_MODEL = "runs/20230529_02_32_23_LSTM_train/9_model.tar"
+LSTM_TRAINED_MODEL = "runs/20240522_23_19_25_LSTM_train/9_model.tar"
 LSTM_TRAINED_MODEL_BEFORE_9 = "runs/20230528_11_22_27_LSTM_test/8_model.tar"
-LSTM_TRAINED_MODEL = LSTM_TRAINED_MODEL_BEFORE_9
+# LSTM_TRAINED_MODEL = LSTM_TRAINED_MODEL_BEFORE_9
 A2C_TRAINED_MODEL = "runs/20230529_20_04_52_a2c_train/9_model.tar"
-LSTM_HIDDEN = 6#325
-FALCON_TRAINED_MODEL = "runs/20240515_21_52_35_FALCON_train\9_model.tar"
+FALCON_TRAINED_MODEL = "runs/20230529_20_04_52_a2c_train/9_model.tar"
+LSTM_HIDDEN = 6#32
