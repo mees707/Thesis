@@ -7,25 +7,15 @@ import multiprocessing as mp
 
 def get_request(queue: queue.Queue, logger, end_of_run: mp.Event = None):
     logger.info("Waiting for request...")
+    logger.info(end_of_run.is_set())
     while not end_of_run.is_set():
         try:
             req, evt = queue.get(timeout=0.05)
             return req, evt
         except Exception as ex:
-            #logger.error(repr(ex))
+            logger.error(repr(ex))
             continue
     return None, None
-
-def get_request_reset(queue: queue.Queue, logger, end_of_run: mp.Event = None):
-    logger.info("Waiting for request...")
-    while True:
-        try:
-            req, evt = queue.get(timeout=0.05)
-            return req, evt
-        except Exception as ex:
-            logger.error(f"Exception occurred: {repr(ex)}")
-            continue
-
 
 def put_response(response, queue: queue.Queue, logger):
     logger.info("Putting response...")

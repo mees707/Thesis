@@ -9,20 +9,20 @@ A_DIM = 5#6 # 0 = minrtt, 1 = 0% path 1, 3 = 50%, 5 = 100% path 1
 
 
 
-#model_name = 'minrtt' #'FALCON'
-model_name = 'LSTM'
+#model_name = 'minrtt' #'FALCON' 'lstm'
+model_name = 'lstm'
 #model_name = 'a2c'
 TRAINING = True #if true, store model after done, have high exploration
 MODE = 'train' if TRAINING else 'test'
 LOAD_MODEL = True
 
 SEGMENT_LIMIT = 301#90#301
-EPISODES_TO_RUN = 10
+EPISODES_TO_RUN = 1
 START_WITH_TRACE = 0
 
 # hyperparameters
 hidden_size = 256
-learning_rate = 0.001 #0.005  #3e-4
+learning_rate = 0.005 #0.005  #3e-4
 apply_loss_steps = 25
 SEGMENT_UPDATES_FOR_LOSS = 3
 

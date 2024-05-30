@@ -18,7 +18,7 @@ import pexpect
 from pexpect.popen_spawn import PopenSpawn
 
 from .experiences.quic_web_browse import launchTests
-# from utils.logger import config_logger
+from utils.logger import config_logger
 
     # from central_service.variables import REMOTE_SERVER_RUNNER_HOSTNAME, REMOTE_SERVER_RUNNER_PORT, REMOTE_HOST, \
     #     REMOTE_PORT, SEGMENT_LIMIT, START_WITH_TRACE
@@ -178,6 +178,9 @@ class Environment:
         self.get_traces()
         print(f"mode received at env: {mode}")
 
+        self.logger = config_logger('agent', './logs/sbd_log.log')
+        self.logger.info("Run Agent until training stops...")
+
     def get_traces(self):
         random.seed(42)
         trace_pairs: list[tuple[str, str]] = []
@@ -286,25 +289,43 @@ class Environment:
         self.sbd_run()
 
     def sbd_run(self):
-        # launchTests(self.curr_topo, self.curr_graph)
-        # cmd = ["ssh", "-p", self._remotePort, self._remoteHostname,
-        #       "\"sudo python ~/Workspace/mpquic-sbd/network/mininet/build_mininet_router1_old.py -nm 2 -p 'basic' >> ~/Workspace/mpquic-sbd/test_log.txt\""]
         tf = self.current_trace_pair[0]
         tf2 = self.current_trace_pair[1]
-        cmd = self.ssh(
-            f"sudo python ~/Workspace/mpquic-sbd/network/mininet/build_mininet_router1.py -nm 2 -p 'netflix' " +
-            f"-tf {tf} -tf2 {tf2} -s {SEGMENT_LIMIT} 2>&1 | tee ~/Workspace/mpquic-sbd/test_log.txt")  #
-        print(cmd)
-        f = open("logs/sbd_log.txt", "a")
-        child = PopenSpawn(cmd, timeout=900, logfile=f)
-        print('launched sbd test')
-        # child.expect("*** Creating network")
-        # time.sleep(10)
-        child.wait()
-        print('sbd run over')
-        # the_old_way = subprocess.Popen(cmd,
-        #                               stdout=subprocess.PIPE).communicate()[0].rstrip()
-        f.close()
+        remote_cmd = (
+            f"sudo python ~/Workspace/mpquic-sbd/network/mininet/build_mininet_router1.py "
+            f"-nm 2 -p 'netflix' -tf {tf} -tf2 {tf2} -s {SEGMENT_LIMIT} "
+            "2>&1 | tee ~/Workspace/mpquic-sbd/test_log.txt"
+        )
+        cmd = self.ssh(remote_cmd)
+        print(f"SSH Command: {cmd}")
+
+        with open("logs/sbd_log.txt", "a") as f:
+            child = PopenSpawn(cmd, timeout=900, logfile=f)
+            print(child)
+            print('Launched SBD test')
+            child.wait()
+            print('SBD run over')
+
+        # Now, read the remote log file and append its content to the local log file
+        remote_log_file = "~/Workspace/mpquic-sbd/test_log.txt"
+        local_log_file = "logs/sbd_log.txt"
+        
+        # Assuming you have a method to SCP the remote log file to local
+        self.scp_from_remote(remote_log_file, "remote_test_log.txt")
+
+        with open("remote_test_log.txt", "r") as remote_log:
+            remote_log_content = remote_log.read()
+
+        with open(local_log_file, "a") as local_log:
+            local_log.write(remote_log_content)
+
+        # Optionally, clean up the fetched remote log file
+        os.remove("remote_test_log.txt")
+
+    # Note: Ensure you have a method to perform SCP to fetch the log file from the remote machine
+    def scp_from_remote(self, remote_path, local_path):
+        scp_cmd = f"scp -P {self._remotePort} {self._remoteHostname}:{remote_path} {local_path}"
+        os.system(scp_cmd)
 
     def close(self):
         self.stop_middleware()

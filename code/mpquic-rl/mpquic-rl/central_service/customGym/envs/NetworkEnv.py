@@ -33,7 +33,7 @@ from centraltrainer.request_handler import RequestHandler
 from centraltrainer.collector import Collector
 from environment.environment import Environment
 from utils.logger import config_logger
-from utils.queue_ops import get_request, put_response, get_request_reset
+from utils.queue_ops import get_request, put_response
 from utils.data_transf import arrangeStateStreamsInfo, getTrainingVariables, allUnique
 from variables import REMOTE_HOST, A_DIM, INTERMEDIATE_REWARD, SPARSE_REWARD
 
@@ -331,6 +331,8 @@ class NetworkEnv(gym.Env):
 # and some auxiliary information. We can use the methods ``_get_obs`` and
 # ``_get_info`` that we implemented earlier for that:
 
+    
+
     def reset(self, seed=None, options=None, return_info=False):
         # We need the following line to seed self.np_random
         print("reset")
@@ -343,13 +345,14 @@ class NetworkEnv(gym.Env):
         info = self._get_info()
 
         self.end_of_run.clear()
-
+        
         with self.cqueue.mutex:
             # clear the queue
             self.cqueue.queue.clear()
+        self.logger.info(print(self.end_of_run.is_set()))
 
         if self.request is None:
-            self.request, ev1 = get_request_reset(self.tqueue, self.logger, end_of_run=self.end_of_run)
+            self.request, ev1 = get_request(self.tqueue, self.logger, end_of_run=self.end_of_run) #get_request(self.tqueue, self.logger, end_of_run=self.end_of_run)
             #print(self.request)
             if self.request is not None:
                 ev1.set()  # let `producer` (rh) know we received request
