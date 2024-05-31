@@ -179,7 +179,7 @@ class Environment:
         print(f"mode received at env: {mode}")
 
         self.logger = config_logger('agent', './logs/sbd_log.log')
-        self.logger.info("Run Agent until training stops...")
+        self.logger.info("Run Agent until training stops...")       
 
     def get_traces(self):
         random.seed(42)
@@ -190,6 +190,7 @@ class Environment:
         self.traces.sort()
 
         for trace in self.traces:
+            print(trace)
             if "static" in trace:
                 trace_pairs.append((trace, 'wifi'))
         mobile = [t for t in self.traces if 'car' in t]
@@ -289,6 +290,8 @@ class Environment:
         self.sbd_run()
 
     def sbd_run(self):
+    
+
         tf = self.current_trace_pair[0]
         tf2 = self.current_trace_pair[1]
         remote_cmd = (
@@ -311,7 +314,7 @@ class Environment:
         local_log_file = "logs/sbd_log.txt"
         
         # Assuming you have a method to SCP the remote log file to local
-        self.scp_from_remote(remote_log_file, "remote_test_log.txt")
+        self.scp_from_remote(remote_log_file, local_log_file)
 
         with open("remote_test_log.txt", "r") as remote_log:
             remote_log_content = remote_log.read()
@@ -319,8 +322,7 @@ class Environment:
         with open(local_log_file, "a") as local_log:
             local_log.write(remote_log_content)
 
-        # Optionally, clean up the fetched remote log file
-        os.remove("remote_test_log.txt")
+
 
     # Note: Ensure you have a method to perform SCP to fetch the log file from the remote machine
     def scp_from_remote(self, remote_path, local_path):
