@@ -220,51 +220,51 @@ class FalconMemory(ChangeDetect):
         self.observations.append(obs)
         return change
 
-def test_change_detect():
-    before = [0.74747475, 0.04040404, 0.50918333, 0.16425, 0.1, 0.15]
-    after = [0.84848485, 0.57575758, 0.0, 0.0, 0.0, 0.0]
-    memory = FalconMemory()
-    for i in range(20):
-        memory.add_obs(before, None)
-    print("=================New env================")
-    for i in range(10):
-        memory.add_obs(after, None)
-class ReplayMemory:
-    def __init__(self):
-        self.log_probs = []
-        self.values = []
-        self.rewards = []
-        self.actions = []
-        self.entropy_terms = []
-        #self.logger = logger
-    def update_memory(self, action, value, policy_dist, reward):
-        dist = policy_dist.detach().numpy()
-        log_prob = torch.log(policy_dist.squeeze(0)[action])
-        entropy = -np.sum(np.mean(dist) * np.log(dist))
+# def test_change_detect():
+#     before = [0.74747475, 0.04040404, 0.50918333, 0.16425, 0.1, 0.15]
+#     after = [0.84848485, 0.57575758, 0.0, 0.0, 0.0, 0.0]
+#     memory = FalconMemory()
+#     for i in range(20):
+#         memory.add_obs(before, None)
+#     print("=================New env================")
+#     for i in range(10):
+#         memory.add_obs(after, None)
+# class ReplayMemory:
+#     def __init__(self):
+#         self.log_probs = []
+#         self.values = []
+#         self.rewards = []
+#         self.actions = []
+#         self.entropy_terms = []
+#         #self.logger = logger
+#     def update_memory(self, action, value, policy_dist, reward):
+#         dist = policy_dist.detach().numpy()
+#         log_prob = torch.log(policy_dist.squeeze(0)[action])
+#         entropy = -np.sum(np.mean(dist) * np.log(dist))
 
-        self.actions.append(action)
+#         self.actions.append(action)
 
-        self.rewards.append(reward)
-        self.values.append(value)
-        self.log_probs.append(log_prob)
-        self.entropy_terms.append(entropy)
-        #self.entropy_term += entropy
-    def get_memory(self, length=-1):
-        if length < 0:
-            length = len(self.log_probs)
-        entropy_term = np.sum(self.entropy_terms[-length:])
-        #Qval, values, rewards, log_probs, entropy_term
-        return self.values[-1], self.values[-length:], self.rewards[-length:], self.log_probs[-length:], entropy_term
+#         self.rewards.append(reward)
+#         self.values.append(value)
+#         self.log_probs.append(log_prob)
+#         self.entropy_terms.append(entropy)
+#         #self.entropy_term += entropy
+#     def get_memory(self, length=-1):
+#         if length < 0:
+#             length = len(self.log_probs)
+#         entropy_term = np.sum(self.entropy_terms[-length:])
+#         #Qval, values, rewards, log_probs, entropy_term
+#         return self.values[-1], self.values[-length:], self.rewards[-length:], self.log_probs[-length:], entropy_term
 
-    def clear(self):
-        self.log_probs = []
-        self.values = []
-        self.rewards = []
-        self.actions = []
-        self.entropy_terms = []
+#     def clear(self):
+#         self.log_probs = []
+#         self.values = []
+#         self.rewards = []
+#         self.actions = []
+#         self.entropy_terms = []
 
-    def __len__(self):
-        return len(self.values)
+#     def __len__(self):
+#         return len(self.values)
 
 
 loss_history_actor = []
