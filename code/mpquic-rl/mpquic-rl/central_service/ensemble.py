@@ -25,6 +25,7 @@ from pathlib import Path
 
 from variables import *
 import variables as GLOBAL_VARIABLES
+import copy
 
 class _ChangeFinderAbstract(object):
     def _add_one(self, one, ts, size):
@@ -154,6 +155,42 @@ class ChangeDetect:
             # self.logger.info("Change detected!") #commented this part, dont think its necesary but was causing issues
         return change
 
+class ReplayMemory:
+    def __init__(self):
+        self.log_probs = []
+        self.values = []
+        self.rewards = []
+        self.actions = []
+        self.entropy_terms = []
+        #self.logger = logger
+    def update_memory(self, action, value, policy_dist, reward):
+        dist = policy_dist.detach().numpy()
+        log_prob = torch.log(policy_dist.squeeze(0)[action])
+        entropy = -np.sum(np.mean(dist) * np.log(dist))
+
+        self.actions.append(action)
+
+        self.rewards.append(reward)
+        self.values.append(value)
+        self.log_probs.append(log_prob)
+        self.entropy_terms.append(entropy)
+        #self.entropy_term += entropy
+    def get_memory(self, length=-1):
+        if length < 0:
+            length = len(self.log_probs)
+        entropy_term = np.sum(self.entropy_terms[-length:])
+        #Qval, values, rewards, log_probs, entropy_term
+        return self.values[-1], self.values[-length:], self.rewards[-length:], self.log_probs[-length:], entropy_term
+
+    def clear(self):
+        self.log_probs = []
+        self.values = []
+        self.rewards = []
+        self.actions = []
+        self.entropy_terms = []
+
+    def __len__(self):
+        return len(self.values)
 
 def moving_average(x, w):
     if len(x) < 3:
@@ -168,8 +205,11 @@ def evaluate_model(model, env, num_episodes=5):
     for _ in range(num_episodes):
         state = env.reset()
         done = False
-        while not done:
+        for i in range(20):
+            print(i)
             action = model.select_action(state)
+            if model_name == 'minrtt':
+                action == 0
             state, reward, done, _ = env.step(action)
             total_reward += reward
     return total_reward / num_episodes
@@ -183,25 +223,26 @@ def main():
     max_steps = 4000
     lstm_memory = None
     
-    run_id = datetime.now().strftime('%Y%m%d_%H_%M_%S') + f"_{model_name}_{MODE}"
+    run_id = datetime.now().strftime('%Y%m%d_%H_%M_%S') + f"_MINRTT_LSTM_{MODE}"
     log_dir = Path("runs/" + run_id)
     log_dir.mkdir(parents=True)
 
     logger = config_logger('agent', log_dir / 'agent.log')
     logger.info("Run Agent until training stops...")
 
-    print(f"RUNNING MODEL: {model_name}")
+    print(f"RUNNING LSTM AND MINRTT")
     print(f"RUNNING MODE: {MODE}")
 
-
+    
 
     # Initialize environment and models
-    env: NetworkEnv = gym.make('NetworkEnv', mode=MODE)
     lstm_actor_critic = ActorCritic(num_inputs, num_outputs, hidden_size, use_lstm=True)
-    minrtt_actor_critic = ActorCritic(num_inputs, num_outputs, hidden_size) # Assuming MinRTT is a defined class or function
+    memory = ChangeDetect(logger)
+
+    ac_optimizer = optim.Adam(lstm_actor_critic.parameters(), lr=learning_rate)
 
 
-    if not TRAINING and LOAD_MODEL and model_name != 'minrtt':
+    if not TRAINING and LOAD_MODEL and model_name != 'minrtt': #last bit is depricated but leaving in for now
         checkpoint = torch.load(LSTM_TRAINED_MODEL)
 
         lstm_actor_critic.load_state_dict(checkpoint['model_state_dict'])
@@ -212,45 +253,159 @@ def main():
             lstm_actor_critic.lstm_memory = None
         print("model loaded from checkpoint")
 
-
     #save variables for future reference
     with open(log_dir / "variables.json", "w") as outfile:
         env_vars = {item: getattr(GLOBAL_VARIABLES, item) for item in dir(GLOBAL_VARIABLES) if
                     not item.startswith("__") and not item.endswith("__")}
         json.dump(env_vars, outfile, indent=4, sort_keys=False)
 
-
-    current_model = lstm_actor_critic
-    best_model = current_model
-    best_reward = float('-inf')
+    total_steps = 0
+    env: NetworkEnv = gym.make('NetworkEnv', mode=MODE)
+    replay_memory = ReplayMemory()
 
     rewards = []
     loss_history = []
 
-    for epoch in range(num_epochs):
-        state = env.reset()
-        done = False
-        while not done:
-            action = current_model.select_action(state)
-            next_state, reward, done, _ = env.step(action)
-            loss = current_model.update(state, action, reward, next_state, done)
-            state = next_state
-            rewards.append(reward)
-            loss_history.append(loss)
+    start_time = time.time()
+    print("Starting agent")
+    with torch.autograd.set_detect_anomaly(True):
+        for episode in range(START_WITH_TRACE, START_WITH_TRACE + EPISODES_TO_RUN):
+            state = env.reset()
+            state = torch.Tensor(state)
+            
+            lstm_actor_critic.reset_lstm_memory()  # Reset LSTM memory at the beginning of each episode
 
-        # Evaluate models
-        if epoch % eval_interval == 0:
-            lstm_reward = evaluate_model(lstm_model, env)
-            minrtt_reward = evaluate_model(minrtt_model, env)
+            start_time = time.time()
+            reward_info = None
+            rewards = []
+            states = []
+            loss_history = []
+            print("Episode ", episode)
 
-            if lstm_reward > minrtt_reward + switch_threshold:
-                best_model = lstm_model
-            elif minrtt_reward > lstm_reward + switch_threshold:
-                best_model = minrtt_model
+            last_segment_update = 0
+            segment_update_count = 0
 
-            current_model = best_model
-            best_reward = max(lstm_reward, minrtt_reward)
-            print(f'Epoch {epoch}, Best Model: {type(current_model).__name__}, Best Reward: {best_reward}')
+            
+
+            current_action = 0
+            for step in tqdm(range(max_steps)):
+
+
+                value, policy_dist, lstm_memory = lstm_actor_critic.forward(state, lstm_actor_critic.lstm_memory)
+                dist = policy_dist.detach().numpy() 
+
+                sample = random.random()
+                eps_threshold = EPS_TRAIN if TRAINING else EPS_TEST
+                if sample > eps_threshold:
+                    ltsm_action = np.random.choice(num_outputs, p=np.squeeze(dist))
+                else:
+                    ltsm_action = env.action_space.sample()
+                
+                minrtt_action = 0
+                
+                if episode in (5, 9):
+                    current_action == ltsm_action
+                    print("currently running LSTM")
+                else: 
+                    current_action == minrtt_action
+                # _, minrtt_reward, _, _ = env_clone.step(minrtt_action)
+
+                # lstm_cum_reward += lstm_reward
+                # minrtt_cum_reward += minrtt_reward
+
+                # if total_steps % 20 == 0:
+                #     if lstm_cum_reward > minrtt_cum_reward:
+                #         current_action = ltsm_action
+                #         print('current model: ltsm')
+                #     else:
+                #         current_action = minrtt_action
+                #         print('current model: minrtt')
+                #     lstm_cum_reward = 0
+                #     minrtt_reward = 0
+
+                new_state, reward, done, reward_info = env.step(current_action)
+
+                
+
+                state = torch.Tensor(new_state)
+                states.append(state)    
+                rewards.append(reward)
+
+                segment_done = False
+                if reward_info == True:
+                    segment_update_count += 1
+
+                replay_memory.update_memory(ltsm_action, value, policy_dist, reward)
+                change = memory.add_obs(state)
+                
+                if change:
+                    segment_update_count = SEGMENT_UPDATES_FOR_LOSS
+
+                if LOSS_SEGMENT_RETURN_BASED:
+                    diff = step - last_segment_update
+                else:
+                    diff = apply_loss_steps
+
+                if total_steps % apply_loss_steps == 0 and total_steps > 0 and len(replay_memory) > apply_loss_steps:
+                    memory_values = replay_memory.get_memory(diff)
+                    ac_loss = lstm_actor_critic.calc_a2c_loss(*memory_values)
+                    ac_optimizer.zero_grad()
+                    ac_loss.backward()
+                    ac_optimizer.step()
+                    if model_name == 'LSTM':
+                        lstm_actor_critic.lstm_after_loss()
+                    loss_history.append(ac_loss.detach().numpy())
+                    msg = "TD_loss: {}, Avg_reward: {}, Avg_entropy: {}".format(ac_loss, np.mean(memory_values[2]),
+                                                                                np.mean(replay_memory.entropy_terms))
+                    logger.debug(msg)
+                    last_segment_update = step
+                    segment_update_count = 0
+
+                
+                lstm_actor_critic.reset_lstm_memory()
+                replay_memory.clear()
+
+                total_steps += 1
+
+                if done:
+                    break
+
+                lstm_actor_critic.lstm_memory = (lstm_memory[0].detach(), lstm_memory[1].detach())
+
+            lstm_actor_critic.reset_lstm_hidden()
+
+            torch.save({
+                'model_state_dict': lstm_actor_critic.state_dict(),
+                'optimizer_state_dict': lstm_actor_critic.state_dict(),
+                'lstm_memory': lstm_memory
+            }, log_dir / f"{episode}_model.tar")
+
+            np.savetxt(log_dir / f"{episode}_rewards.csv", np.array(rewards), delimiter=", ", fmt='% s')
+            np.savetxt(log_dir / f"{episode}_loss.csv", np.array(loss_history), delimiter=", ", fmt='% s')
+            np.savetxt(log_dir / f"{episode}_states.csv", np.array(states), delimiter=", ", fmt='% s')
+            segment_rewards = pd.DataFrame(env.segment_rewards)
+            segment_rewards.to_csv(log_dir / f"{episode}_segments.csv")
+
+            segment_rewards['qoe_smooth'] = segment_rewards['qoe'].rolling(10).mean()
+            segment_rewards[['qoe', 'qoe_smooth']].plot()
+            plt.title(f'QOE {run_id} {episode}')
+            plt.savefig(log_dir / "qoe.png")
+            plt.show()
+
+            segment_rewards['bitrate'].rolling(10).mean().plot()
+            plt.title(f'bitrate {run_id} {episode}')
+            plt.savefig(log_dir / "bitrate.png")
+            plt.show()
+
+            logger.debug("====")
+            avg_qoe = segment_rewards[segment_rewards['segment_nr'] == segment_rewards['segment_nr'].max()]['qoe'].mean()
+            logger.debug(f"Epoch: {episode}, qoe: {avg_qoe}")
+            print(f"Epoch: {episode}, qoe: {avg_qoe}")
+            logger.debug("====")
+
+
+    end_time = time.time()
+    env.close()
 
     # Plot results
     plt.plot([x for x in rewards if x > 0])

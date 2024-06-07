@@ -349,7 +349,7 @@ class NetworkEnv(gym.Env):
         with self.cqueue.mutex:
             # clear the queue
             self.cqueue.queue.clear()
-        self.logger.info(print(self.end_of_run.is_set()))
+        self.logger.info(self.end_of_run.is_set())
 
         if self.request is None:
             self.request, ev1 = get_request(self.tqueue, self.logger, end_of_run=self.end_of_run) #get_request(self.tqueue, self.logger, end_of_run=self.end_of_run)
@@ -442,3 +442,13 @@ class NetworkEnv(gym.Env):
         return [1]
     def set_task(self, _):
         return None
+
+
+
+    def clone_state(self):
+        # Return a copy of the current state
+        return dataclasses.replace(self.state)
+
+    def restore_state(self, state):
+        # Restore the environment's state from the given state
+        self.state = state
