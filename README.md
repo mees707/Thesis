@@ -177,3 +177,7 @@ trying to fix the issue that i can run more than one run since it makes it impos
 
 22 may:
 writing related work
+
+2 june
+looking into ensemble methods for meta learning:
+

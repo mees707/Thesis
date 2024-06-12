@@ -9,7 +9,7 @@ import numpy as np
 import tensorflow.compat.v1 as tf
 from torch import optim
 
-from central_service.pytorch_models.metaModel import MetaModel, ActorCritic
+from central_service.pytorch_models.metaModelImprove import MetaModel, ActorCritic
 from central_service.variables import REMOTE_HOST
 
 tf.disable_v2_behavior()

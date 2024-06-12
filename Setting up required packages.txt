@@ -12,3 +12,4 @@ conda activate mpquic39
 cd  code\mpquic-rl\mpquic-rl\central_service
 python ensemble.py
 python main.py
+python oldmain.py

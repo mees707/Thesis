@@ -303,34 +303,30 @@ def main():
                 
                 minrtt_action = 0
                 
-                if episode in (5, 9):
-                    current_action == ltsm_action
-                    print("currently running LSTM")
-                else: 
-                    current_action == minrtt_action
+                # if episode in (5, 9):
+                #     current_action == ltsm_action
+                #     print("currently running LSTM")
+                # else: 
+                #     current_action == minrtt_action
                 # _, minrtt_reward, _, _ = env_clone.step(minrtt_action)
 
                 # lstm_cum_reward += lstm_reward
                 # minrtt_cum_reward += minrtt_reward
 
-                # if total_steps % 20 == 0:
-                #     if lstm_cum_reward > minrtt_cum_reward:
-                #         current_action = ltsm_action
-                #         print('current model: ltsm')
-                #     else:
-                #         current_action = minrtt_action
-                #         print('current model: minrtt')
-                #     lstm_cum_reward = 0
-                #     minrtt_reward = 0
 
-                new_state, reward, done, reward_info = env.step(current_action)
+
+                    
+                if current_action == 0:
+                    new_state, reward, done, reward_info = env.step(minrtt_action)
+                else: 
+                    new_state, reward, done, reward_info = env.step(ltsm_action)
 
                 
 
                 state = torch.Tensor(new_state)
                 states.append(state)    
                 rewards.append(reward)
-
+                print(state)
                 segment_done = False
                 if reward_info == True:
                     segment_update_count += 1
@@ -367,7 +363,24 @@ def main():
 
                 total_steps += 1
 
+
+                if total_steps % 50 == 0:
+                    last_reward = rewards[-1]
+
+                    if current_action == 0:
+                        _, other_reward, _, _ = env.step(ltsm_action)
+                        if other_reward > last_reward:
+                            current_action = ltsm_action
+                            print('current model is ltsm')
+                    else:
+                        _, other_reward, _, _ = env.step(minrtt_action)
+                        if other_reward > last_reward:
+                            current_action = minrtt_action
+                            print('current model is minrtt')
+
+
                 if done:
+                    current_action = 0
                     break
 
                 lstm_actor_critic.lstm_memory = (lstm_memory[0].detach(), lstm_memory[1].detach())
