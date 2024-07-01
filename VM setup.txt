@@ -11,7 +11,7 @@ setting up the software that will run the VM (might be possible on other VM soft
    click on path -> select edit -> New 
    insert the location where qemu is downloaded (most likely C:\Program Files\qemu)
    check if done properly by running qemu-system-x86_64.exe in CMD or powershell
-3) download the VM (need to set up a download link)
+3) download the VM (https://drive.google.com/file/d/1QZWPEKMdnI3w2gtYhXZO6qcOCGgdpwWj/view?usp=drive_link)
    
 
 launcing the VM and setting up SSH:
@@ -34,15 +34,4 @@ launcing the VM and setting up SSH:
      ssh -p 2222 mininet@localhost
    there should not be a password promt anymore.
 
-
-THIS IS STILL A WORK IN PROGRESS, ALTHOUGH MOST STEPS ARE HERE NOW
-
-
-
-NOT YET CLEAR ABOUT THESE STEPS:
-# Create if it does not exists yet
-The second one is to mount the file measurement location on the RAM. This should limit the impact of the hard disk on the results.
-$ sudo mkdir /mnt/tmpfs
-# This should be run each time the VM is restarted
-$ sudo mount -t tmpfs -o size=256M tmpfs /mnt/tmpfs
-steps dont work so far
+after following these steps, the VM 
